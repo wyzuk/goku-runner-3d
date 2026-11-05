@@ -29,8 +29,8 @@ export class MainMenu {
 
         <div class="menu-logo-hero">
           <h1 class="logo-title">
-            <span class="logo-goku">GOKU</span>
-            <span class="logo-runner">RUNNER 3D</span>
+            <span class="logo-goku">WYZUK</span>
+            <span class="logo-runner">GOKU RUN</span>
           </h1>
           <div class="logo-subtitle">SUPER SAIYAN ENDLESS RUNNER</div>
           <div class="author-credit-tag">Created by Wyzuk</div>

@@ -21,7 +21,7 @@ export class SettingsModal {
       cameraShake: true,
       touchControls: true,
       touchOpacity: 80,
-      characterSkin: 'DEFAULT'
+      characterSkin: 'GOGETA'
     };
     try {
       const data = localStorage.getItem('goku_runner_settings_v1');
@@ -66,18 +66,20 @@ export class SettingsModal {
           <div class="settings-group">
             <h3>Character & Visuals</h3>
             <div class="setting-row">
-              <label>Character Model / Skin</label>
+              <label>Character Model / Form</label>
               <select id="character-skin-select" class="anime-select">
-                <option value="DEFAULT" ${this.settings.characterSkin === 'DEFAULT' ? 'selected' : ''}>Adult Goku (Animated / Physics)</option>
-                <option value="CHIBI_SSJ3" ${this.settings.characterSkin === 'CHIBI_SSJ3' ? 'selected' : ''}>Chibi SSJ3 Goku (3D Model / Hover)</option>
+                <option value="DEFAULT" ${this.settings.characterSkin === 'DEFAULT' ? 'selected' : ''}>Goku (Base Form - Black Hair)</option>
+                <option value="CHIBI_SSJ3" ${this.settings.characterSkin === 'CHIBI_SSJ3' ? 'selected' : ''}>Goku (Super Saiyan 3 - Golden Hair)</option>
+                <option value="GOGETA" ${this.settings.characterSkin === 'GOGETA' ? 'selected' : ''}>Gogeta (Adult Super Saiyan Warrior)</option>
               </select>
             </div>
             <div class="setting-row">
               <label>Graphics Quality</label>
               <select id="graphics-select" class="anime-select">
-                <option value="LOW" ${this.settings.graphicsQuality === 'LOW' ? 'selected' : ''}>Low (High FPS / Battery Saver)</option>
+                <option value="LOW" ${this.settings.graphicsQuality === 'LOW' ? 'selected' : ''}>Low (Performance / Fast)</option>
                 <option value="MEDIUM" ${this.settings.graphicsQuality === 'MEDIUM' ? 'selected' : ''}>Medium (Balanced)</option>
-                <option value="HIGH" ${this.settings.graphicsQuality === 'HIGH' ? 'selected' : ''}>High (Full Shaders & Shadows)</option>
+                <option value="HIGH" ${this.settings.graphicsQuality === 'HIGH' ? 'selected' : ''}>High (Full Vegetation & Soft Shadows)</option>
+                <option value="ULTRA" ${this.settings.graphicsQuality === 'ULTRA' ? 'selected' : ''}>Ultra (Maximum AAA Visuals)</option>
               </select>
             </div>
             <div class="setting-row checkbox-row">

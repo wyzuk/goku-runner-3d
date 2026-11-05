@@ -12,6 +12,26 @@ export class ChunkManager {
 
     // Spawning callbacks
     this.onChunkGenerated = null;
+    this.qualityPreset = 'HIGH';
+  }
+
+  setQualityPreset(preset) {
+    this.qualityPreset = preset;
+    for (const chunk of this.chunks) {
+      chunk.setQualityPreset(preset);
+    }
+    for (const chunk of this.chunkPool) {
+      chunk.setQualityPreset(preset);
+    }
+  }
+
+  refreshGeometries() {
+    for (const chunk of this.chunks) {
+      chunk.refreshGeometries();
+    }
+    for (const chunk of this.chunkPool) {
+      chunk.refreshGeometries();
+    }
   }
 
   getBiomeForDistance(distance) {

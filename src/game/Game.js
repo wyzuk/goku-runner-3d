@@ -114,7 +114,10 @@ export class Game {
 
     // Asynchronously preload all 3D environment & obstacle models
     modelLoader.preloadAll().then(() => {
-      console.log('[Game] 3D Models loaded. Rebuilding active world chunks...');
+      console.log('[Game] 3D Models loaded. Refreshing active world chunk geometries...');
+      if (this.world && this.world.chunkManager) {
+        this.world.chunkManager.refreshGeometries();
+      }
       if (this.gameState.is(GAME_STATES.MENU)) {
         this.world.reset();
       }
@@ -126,6 +129,42 @@ export class Game {
       this.player.gokuModel.setSkin(skinName);
       console.log(`[Game] Switched player skin to: ${skinName}`);
     }
+  }
+
+  setGraphicsQuality(preset = 'HIGH') {
+    this.graphicsQuality = preset;
+    const isLow = preset === 'LOW';
+    const isMed = preset === 'MEDIUM';
+    const isHigh = preset === 'HIGH';
+    const isUltra = preset === 'ULTRA';
+
+    if (isLow) {
+      this.renderer.setPixelRatio(1.0);
+      if (this.world && this.world.dirLight) {
+        this.world.dirLight.castShadow = false;
+        this.renderer.shadowMap.enabled = false;
+      }
+    } else {
+      this.renderer.shadowMap.enabled = true;
+      if (this.world && this.world.dirLight) {
+        this.world.dirLight.castShadow = true;
+        const mapSize = isMed ? 1024 : (isUltra ? 2048 : 1024);
+        this.world.dirLight.shadow.mapSize.width = mapSize;
+        this.world.dirLight.shadow.mapSize.height = mapSize;
+      }
+      if (isMed) {
+        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.25));
+      } else if (isHigh) {
+        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+      } else if (isUltra) {
+        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2.0));
+      }
+    }
+
+    if (this.world && this.world.chunkManager) {
+      this.world.chunkManager.setQualityPreset(preset);
+    }
+    console.log(`[Game] Applied graphics preset: ${preset}`);
   }
 
   setupCallbacks() {
@@ -330,11 +369,11 @@ export class Game {
 
   update(dt, totalTime) {
     if (this.gameState.is(GAME_STATES.MENU)) {
-      // Idle / preview Goku breathing and slow rotation
+      // Idle / preview Goku facing camera in Main Menu
       this.player.animation.update(dt, 0, true, false, 0);
       this.player.gokuModel.update(totalTime, dt);
-      this.camera.position.set(0, 1.8, -4.5);
-      this.camera.lookAt(0, 1.0, 0);
+      this.camera.position.set(0, 1.45, 3.4);
+      this.camera.lookAt(0, 0.95, 0);
       return;
     }
 

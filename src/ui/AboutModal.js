@@ -6,7 +6,7 @@ export class AboutModal {
     this.element.innerHTML = `
       <div class="modal-card anime-card">
         <div class="modal-header">
-          <div class="logo-badge">⚡ GOKU RUNNER 3D ⚡</div>
+          <div class="logo-badge">⚡ WYZUK GOKU RUN ⚡</div>
           <button class="close-btn" id="about-close-btn">&times;</button>
         </div>
         <div class="modal-body">
@@ -30,7 +30,7 @@ export class AboutModal {
           <div class="about-section">
             <h3>About the Game</h3>
             <p>
-              <strong>Goku Runner 3D</strong> is a browser-based 3D endless runner inspired by anime adventures.
+              <strong>Wyzuk Goku Run</strong> is a browser-based 3D endless runner inspired by anime adventures.
               Dodge obstacles, collect Dragon Balls, gather Ki energy, unleash Super Saiyan transformations, and survive an ever-changing procedural world!
             </p>
           </div>

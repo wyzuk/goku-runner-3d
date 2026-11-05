@@ -25,8 +25,11 @@ export const MAX_SPEED = 32;
 export const SSJ_SPEED_BOOST = 8;
 
 export const CHUNK_LENGTH = 45;
-export const ACTIVE_CHUNKS = 7;
+export const ACTIVE_CHUNKS = 5;
 export const ROAD_TOTAL_WIDTH = 12.0;
+// Road (±6), curbs (0.35), shoulders (2.4), gameplay margin (3.5),
+// and an additional scenery safety buffer (4.0).
+export const ROAD_EXCLUSION_HALF_WIDTH = ROAD_TOTAL_WIDTH / 2 + 0.35 + 2.4 + 3.5 + 4.0;
 
 export const BIOMES = {
   EARTH_VALLEY: 'EARTH_VALLEY',

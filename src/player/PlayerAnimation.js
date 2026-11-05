@@ -9,14 +9,20 @@ export const ANIM_STATES = {
   DEATH: 'DEATH'
 };
 
+/**
+ * Procedural Player Animation Controller
+ * Drives energetic, bouncy, stylized anime motion for the 3D Goku model.
+ * Handles running cadence, athletic forward lean, lane banking, jumping, landing squash,
+ * low-profile slide crouching, and Super Saiyan transformation roaring.
+ */
 export class PlayerAnimation {
   constructor(gokuModel) {
     this.model = gokuModel;
-    this.joints = gokuModel.joints;
     this.state = ANIM_STATES.IDLE;
     this.animTime = 0;
-    this.blendWeight = 1.0;
     this.landingTimer = 0;
+    this.verticalVelocity = 0;
+    this.lastPosY = 0;
   }
 
   setState(newState) {
@@ -28,177 +34,145 @@ export class PlayerAnimation {
   }
 
   triggerLanding() {
-    this.landingTimer = 0.15; // 150ms squash recovery
+    this.landingTimer = 0.18; // 180ms squash & recovery
   }
 
   update(dt, speed, isGrounded, isSliding, laneTilt = 0) {
     this.animTime += dt;
+    const root = this.model.animRoot;
+    if (!root) return;
 
     if (this.state === ANIM_STATES.DEATH) {
-      this.animateDeath(dt);
+      this.animateDeath(dt, root);
       return;
     }
 
     if (this.state === ANIM_STATES.TRANSFORM) {
-      this.animateTransform(dt);
+      this.animateTransform(dt, root);
       return;
     }
 
     if (isSliding) {
-      this.animateSlide(dt);
+      this.animateSlide(dt, root, laneTilt);
       return;
     }
 
     if (!isGrounded) {
-      this.animateJump(dt);
+      this.animateJump(dt, root, laneTilt);
       return;
     }
 
     // Grounded running or idle
     if (speed > 1.0) {
-      this.animateRun(dt, speed, laneTilt);
+      this.animateRun(dt, root, speed, laneTilt);
     } else {
-      this.animateIdle(dt);
+      this.animateIdle(dt, root);
     }
   }
 
-  animateRun(dt, speed, laneTilt) {
-    // Frequency scaled to speed: 14 m/s -> ~14 rad/s stride
-    const strideFreq = Math.min(22.0, Math.max(10.0, speed * 0.9));
+  animateRun(dt, root, speed, laneTilt) {
+    // Dynamic stride frequency scaled with running speed
+    const strideFreq = Math.min(24.0, Math.max(12.0, speed * 0.95));
     const cycle = this.animTime * strideFreq;
     const sinCycle = Math.sin(cycle);
     const cosCycle = Math.cos(cycle);
 
-    // Root / Pelvis Vertical Bob & Roll
-    let bob = Math.abs(sinCycle) * 0.08;
+    // 1. Vertical bounce (hop)
+    let hop = Math.abs(sinCycle) * 0.12;
+
+    // 2. Landing squash
+    let squashY = 1.0;
+    let squashXZ = 1.0;
     if (this.landingTimer > 0) {
       this.landingTimer -= dt;
-      bob -= 0.15 * (this.landingTimer / 0.15); // Landing squash
+      const progress = Math.max(0, this.landingTimer / 0.18);
+      hop -= 0.16 * progress;
+      squashY = 1.0 - 0.22 * progress;
+      squashXZ = 1.0 + 0.15 * progress;
+    } else {
+      // Step squash & stretch
+      squashY = 1.0 + Math.sin(cycle * 2.0) * 0.04;
+      squashXZ = 1.0 - Math.sin(cycle * 2.0) * 0.02;
     }
-    this.joints.root.position.y = 0.95 + bob;
-    this.joints.root.rotation.z = laneTilt; // Lean naturally into lane shift
-    this.joints.root.rotation.y = sinCycle * 0.08;
 
-    // Spine lean forward into sprint
-    this.joints.spine.rotation.x = 0.22 + (speed / 30.0) * 0.12;
-    this.joints.spine.rotation.y = -sinCycle * 0.08;
+    root.position.y = hop;
+    root.position.x = 0;
+    root.position.z = 0;
 
-    // Head stays level looking forward
-    this.joints.head.rotation.x = -0.15;
-    this.joints.head.rotation.y = 0;
+    // 3. Forward sprint lean (reveals back, gi, belt, and martial arts stride)
+    const sprintLean = 0.28 + Math.min(0.14, (speed - 14) * 0.008);
+    root.rotation.x = sprintLean;
 
-    // Legs - Alternating stride
-    const legSwing = sinCycle * 0.75;
-    this.joints.leftThigh.rotation.x = legSwing;
-    this.joints.rightThigh.rotation.x = -legSwing;
+    // 4. Lateral sway & lane banking
+    const bankRoll = -laneTilt * 0.35; // Bank deep into lane switches
+    const strideRoll = sinCycle * 0.06;
+    root.rotation.z = bankRoll + strideRoll;
 
-    // Shin bend during back-swing
-    this.joints.leftShin.rotation.x = legSwing < 0 ? -legSwing * 1.2 : 0.1;
-    this.joints.rightShin.rotation.x = -legSwing < 0 ? legSwing * 1.2 : 0.1;
+    // 5. Yaw heading sway
+    const yawSway = cosCycle * 0.05;
+    const steerYaw = -laneTilt * 0.15;
+    root.rotation.y = yawSway + steerYaw;
 
-    // Arms - Opposite to legs for balance
-    const armSwing = -sinCycle * 0.65;
-    this.joints.leftArm.rotation.x = armSwing;
-    this.joints.leftArm.rotation.z = 0.15;
-    this.joints.leftForearm.rotation.x = Math.max(0.2, armSwing + 0.6);
-
-    this.joints.rightArm.rotation.x = -armSwing;
-    this.joints.rightArm.rotation.z = -0.15;
-    this.joints.rightForearm.rotation.x = Math.max(0.2, -armSwing + 0.6);
+    // 6. Scale dynamics
+    root.scale.set(squashXZ, squashY, squashXZ);
   }
 
-  animateJump(dt) {
-    // Dynamic aerial Saiyan leap pose
-    this.joints.root.position.y = 0.95;
-    this.joints.spine.rotation.x = 0.1;
-    this.joints.spine.rotation.y = 0;
+  animateJump(dt, root, laneTilt) {
+    root.position.set(0, 0, 0);
 
-    // Bent knees tucked in midair
-    this.joints.leftThigh.rotation.x = 0.65;
-    this.joints.leftShin.rotation.x = 0.85;
-    this.joints.rightThigh.rotation.x = 0.45;
-    this.joints.rightShin.rotation.x = 0.95;
+    // Floating leap tilt: slight backward pitch at ascent, forward at peak/descent
+    const jumpProgress = Math.min(1.0, this.animTime * 1.8);
+    root.rotation.x = THREE.MathUtils.lerp(-0.16, 0.14, jumpProgress);
+    root.rotation.z = -laneTilt * 0.35;
+    root.rotation.y = -laneTilt * 0.15;
 
-    // Arms braced up and back
-    this.joints.leftArm.rotation.x = -0.6;
-    this.joints.leftArm.rotation.z = 0.4;
-    this.joints.leftForearm.rotation.x = 0.9;
-
-    this.joints.rightArm.rotation.x = -0.6;
-    this.joints.rightArm.rotation.z = -0.4;
-    this.joints.rightForearm.rotation.x = 0.9;
+    // Elongated athletic silhouette in mid-air
+    root.scale.set(0.96, 1.08, 0.96);
   }
 
-  animateSlide(dt) {
-    // Drop root low to ground
-    this.joints.root.position.y = 0.38;
-    this.joints.root.rotation.set(0, 0, 0);
+  animateSlide(dt, root, laneTilt) {
+    // Drop low to ground, pitch backward sliding on heels
+    root.position.y = -0.42;
+    root.position.x = 0;
+    root.position.z = 0.1;
 
-    // Torso angled backwards
-    this.joints.spine.rotation.x = -0.65;
-    this.joints.head.rotation.x = 0.6; // Keep eyes forward
+    root.rotation.x = -0.55; // Slide pitch
+    root.rotation.z = -laneTilt * 0.25;
+    root.rotation.y = 0;
 
-    // Legs kicked straight forward
-    this.joints.leftThigh.rotation.x = -1.35;
-    this.joints.leftShin.rotation.x = 0.1;
-    this.joints.rightThigh.rotation.x = -1.25;
-    this.joints.rightShin.rotation.x = 0.15;
-
-    // Arms planted back for friction brace
-    this.joints.leftArm.rotation.x = -0.9;
-    this.joints.leftArm.rotation.z = 0.35;
-    this.joints.leftForearm.rotation.x = 0.5;
-
-    this.joints.rightArm.rotation.x = -0.9;
-    this.joints.rightArm.rotation.z = -0.35;
-    this.joints.rightForearm.rotation.x = 0.5;
+    // Low obstacle avoidance profile
+    root.scale.set(1.12, 0.65, 1.25);
   }
 
-  animateTransform(dt) {
-    // Powerful Super Saiyan powering up posture
-    // Wide stance, knees bent, fists clenched, chest pumped forward
-    this.joints.root.position.y = 0.82;
-    this.joints.spine.rotation.x = -0.2; // Chest puffed back
-    this.joints.head.rotation.x = -0.25; // Chin raised roaring
+  animateTransform(dt, root) {
+    // Powerful Super Saiyan power-up stance
+    root.position.y = 0.05 + Math.sin(this.animTime * 24.0) * 0.02;
+    const jitter = (Math.random() - 0.5) * 0.04;
+    root.rotation.x = -0.22 + jitter;
+    root.rotation.y = jitter;
+    root.rotation.z = jitter;
 
-    // Wide legs
-    this.joints.leftThigh.rotation.set(0.35, 0, 0.4);
-    this.joints.leftShin.rotation.set(0.65, 0, 0);
-    this.joints.rightThigh.rotation.set(0.35, 0, -0.4);
-    this.joints.rightShin.rotation.set(0.65, 0, 0);
-
-    // Fists clenched at sides shaking with intense energy
-    const shake = (Math.random() - 0.5) * 0.08;
-    this.joints.leftArm.rotation.set(0.2 + shake, 0, 0.5);
-    this.joints.leftForearm.rotation.set(1.4 + shake, 0, 0);
-    this.joints.rightArm.rotation.set(0.2 + shake, 0, -0.5);
-    this.joints.rightForearm.rotation.set(1.4 + shake, 0, 0);
+    // Power expansion pulse
+    const pulse = 1.0 + Math.sin(this.animTime * 18.0) * 0.06;
+    root.scale.set(pulse, pulse, pulse);
   }
 
-  animateDeath(dt) {
-    // Knocked back / collision tumble
-    this.joints.root.position.y = THREE.MathUtils.lerp(this.joints.root.position.y, 0.25, dt * 6.0);
-    this.joints.root.rotation.x = THREE.MathUtils.lerp(this.joints.root.rotation.x, -1.4, dt * 6.0);
-    this.joints.spine.rotation.x = 0.3;
-    this.joints.leftArm.rotation.x = -1.2;
-    this.joints.rightArm.rotation.x = -1.2;
+  animateDeath(dt, root) {
+    // Knockback tumble
+    root.position.y = THREE.MathUtils.lerp(root.position.y, 0.15, dt * 5.0);
+    root.position.z = THREE.MathUtils.lerp(root.position.z, -0.6, dt * 5.0);
+    root.rotation.x = THREE.MathUtils.lerp(root.rotation.x, -1.45, dt * 6.0);
+    root.rotation.z = THREE.MathUtils.lerp(root.rotation.z, 0.6, dt * 4.0);
+    root.scale.set(1.0, 1.0, 1.0);
   }
 
-  animateIdle(dt) {
-    const cycle = this.animTime * 2.5;
-    this.joints.root.position.y = 0.95 + Math.sin(cycle) * 0.02;
-    this.joints.spine.rotation.x = 0.05;
-    this.joints.spine.rotation.y = 0;
-    this.joints.head.rotation.x = 0;
+  animateIdle(dt, root) {
+    // Gentle anime idle breathing & heroic front-facing menu pose
+    const t = this.animTime;
+    const breathe = Math.sin(t * 3.2);
 
-    this.joints.leftThigh.rotation.set(0, 0, 0.1);
-    this.joints.leftShin.rotation.set(0, 0, 0);
-    this.joints.rightThigh.rotation.set(0, 0, -0.1);
-    this.joints.rightShin.rotation.set(0, 0, 0);
-
-    this.joints.leftArm.rotation.set(0.1, 0, 0.2);
-    this.joints.leftForearm.rotation.set(0.3, 0, 0);
-    this.joints.rightArm.rotation.set(0.1, 0, -0.2);
-    this.joints.rightForearm.rotation.set(0.3, 0, 0);
+    root.position.set(0, breathe * 0.02, 0);
+    root.rotation.set(0.04, Math.PI, 0); // Faces camera in main menu
+    root.scale.set(1.0 - breathe * 0.015, 1.0 + breathe * 0.025, 1.0 - breathe * 0.015);
   }
 }

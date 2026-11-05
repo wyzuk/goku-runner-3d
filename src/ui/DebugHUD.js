@@ -14,17 +14,18 @@ export class DebugHUD {
     this.element.className = 'debug-hud hidden';
     this.element.innerHTML = `
       <div class="debug-panel">
-        <div class="debug-title">GOKU RUNNER 3D — DEBUG MONITOR (F3 / B)</div>
+        <div class="debug-title">WYZUK GOKU RUN — DEBUG MONITOR (F3 / B)</div>
         <div class="debug-grid">
           <div><strong>LANE:</strong> <span id="dbg-lane">CENTER (0)</span></div>
           <div><strong>PLAYER X:</strong> <span id="dbg-x">0.00 m</span></div>
-          <div><strong>TARGET X:</strong> <span id="dbg-target-x">0.00 m</span></div>
-          <div><strong>DIR:</strong> <span id="dbg-dir">NONE</span></div>
           <div><strong>STATE:</strong> <span id="dbg-state">GROUNDED</span></div>
           <div><strong>SPEED:</strong> <span id="dbg-speed">14.0 m/s</span></div>
-          <div><strong>CAM POS:</strong> <span id="dbg-cam">(0.0, 3.2, -6.6)</span></div>
           <div><strong>FPS:</strong> <span id="dbg-fps">60</span></div>
-          <div><strong>RENDER RES:</strong> <span id="dbg-res">1920x1080</span></div>
+          <div><strong>DRAWCALLS:</strong> <span id="dbg-calls">0</span></div>
+          <div><strong>TRIANGLES:</strong> <span id="dbg-tris">0</span></div>
+          <div><strong>PRESET:</strong> <span id="dbg-preset">HIGH</span></div>
+          <div><strong>BIOME:</strong> <span id="dbg-biome">VALLEY</span></div>
+          <div><strong>CAM POS:</strong> <span id="dbg-cam">(0.0, 3.2, -6.6)</span></div>
         </div>
       </div>
     `;
@@ -33,13 +34,14 @@ export class DebugHUD {
 
     this.elLane = this.element.querySelector('#dbg-lane');
     this.elX = this.element.querySelector('#dbg-x');
-    this.elTargetX = this.element.querySelector('#dbg-target-x');
-    this.elDir = this.element.querySelector('#dbg-dir');
     this.elState = this.element.querySelector('#dbg-state');
     this.elSpeed = this.element.querySelector('#dbg-speed');
-    this.elCam = this.element.querySelector('#dbg-cam');
     this.elFps = this.element.querySelector('#dbg-fps');
-    this.elRes = this.element.querySelector('#dbg-res');
+    this.elCalls = this.element.querySelector('#dbg-calls');
+    this.elTris = this.element.querySelector('#dbg-tris');
+    this.elPreset = this.element.querySelector('#dbg-preset');
+    this.elBiome = this.element.querySelector('#dbg-biome');
+    this.elCam = this.element.querySelector('#dbg-cam');
   }
 
   toggle() {
@@ -86,12 +88,16 @@ export class DebugHUD {
 
     this.elLane.textContent = `${laneName} (index ${laneIndex - 1})`;
     this.elX.textContent = `${currentX >= 0 ? '+' : ''}${currentX.toFixed(2)} m`;
-    this.elTargetX.textContent = `${targetX >= 0 ? '+' : ''}${targetX.toFixed(2)} m`;
-    this.elDir.textContent = dirText;
     this.elState.textContent = stateText;
     this.elSpeed.textContent = `${physics.getCurrentSpeed().toFixed(1)} m/s`;
     this.elCam.textContent = camStr;
     this.elFps.textContent = `${this.fps}`;
-    this.elRes.textContent = `${window.innerWidth}x${window.innerHeight} (${(window.devicePixelRatio || 1).toFixed(1)}x)`;
+
+    if (game.renderer && game.renderer.info) {
+      this.elCalls.textContent = `${game.renderer.info.render.calls}`;
+      this.elTris.textContent = `${game.renderer.info.render.triangles.toLocaleString()}`;
+    }
+    this.elPreset.textContent = game.graphicsQuality || 'HIGH';
+    this.elBiome.textContent = (game.world && game.world.chunkManager) ? game.world.chunkManager.currentBiome : 'VALLEY';
   }
 }

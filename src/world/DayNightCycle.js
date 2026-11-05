@@ -25,13 +25,13 @@ export class DayNightCycle {
       {
         ratio: 0.0,
         name: 'Sunrise',
-        sunColor: new THREE.Color(0xff8d45),
-        sunIntensity: 1.1,
-        hemiSky: new THREE.Color(0xffa07a),
-        hemiGround: new THREE.Color(0x6b5b45),
-        ambientColor: new THREE.Color(0xff9466),
-        ambientIntensity: 0.45,
-        fogColor: new THREE.Color(0xdca17c),
+        sunColor: new THREE.Color(0xffd0a0),
+        sunIntensity: 1.2,
+        hemiSky: new THREE.Color(0xffd4b0),
+        hemiGround: new THREE.Color(0x81745e),
+        ambientColor: new THREE.Color(0xd9c7b2),
+        ambientIntensity: 0.65,
+        fogColor: new THREE.Color(0xd1dce8),
         sunPos: new THREE.Vector3(-45, 22, 20),
         starsOpacity: 0.0
       },
@@ -53,13 +53,13 @@ export class DayNightCycle {
       {
         ratio: 0.50,
         name: 'Sunset',
-        sunColor: new THREE.Color(0xff5522),
-        sunIntensity: 1.2,
-        hemiSky: new THREE.Color(0xff7744),
-        hemiGround: new THREE.Color(0x5c4228),
-        ambientColor: new THREE.Color(0xdd6644),
-        ambientIntensity: 0.5,
-        fogColor: new THREE.Color(0xd27558),
+        sunColor: new THREE.Color(0xffc078),
+        sunIntensity: 1.25,
+        hemiSky: new THREE.Color(0xf2b887),
+        hemiGround: new THREE.Color(0x6c5945),
+        ambientColor: new THREE.Color(0xc4a78e),
+        ambientIntensity: 0.62,
+        fogColor: new THREE.Color(0xd3b99e),
         sunPos: new THREE.Vector3(50, 16, -15),
         starsOpacity: 0.15
       },
@@ -71,9 +71,9 @@ export class DayNightCycle {
         sunIntensity: 0.7,
         hemiSky: new THREE.Color(0x444477),
         hemiGround: new THREE.Color(0x222233),
-        ambientColor: new THREE.Color(0x334466),
-        ambientIntensity: 0.4,
-        fogColor: new THREE.Color(0x383355),
+        ambientColor: new THREE.Color(0x53647f),
+        ambientIntensity: 0.55,
+        fogColor: new THREE.Color(0x46566f),
         sunPos: new THREE.Vector3(55, 8, -25),
         starsOpacity: 0.5
       },
@@ -82,12 +82,12 @@ export class DayNightCycle {
         ratio: 0.78,
         name: 'Night',
         sunColor: new THREE.Color(0x7799ee), // Cool blue moonlight
-        sunIntensity: 0.65,
+        sunIntensity: 0.8,
         hemiSky: new THREE.Color(0x1a294d),
         hemiGround: new THREE.Color(0x0e1726),
-        ambientColor: new THREE.Color(0x28385e),
-        ambientIntensity: 0.45,
-        fogColor: new THREE.Color(0x131a2e),
+        ambientColor: new THREE.Color(0x405271),
+        ambientIntensity: 0.62,
+        fogColor: new THREE.Color(0x202d46),
         sunPos: new THREE.Vector3(-35, 42, 10),
         starsOpacity: 0.95
       },
@@ -95,13 +95,13 @@ export class DayNightCycle {
       {
         ratio: 1.0,
         name: 'Sunrise',
-        sunColor: new THREE.Color(0xff8d45),
-        sunIntensity: 1.1,
-        hemiSky: new THREE.Color(0xffa07a),
-        hemiGround: new THREE.Color(0x6b5b45),
-        ambientColor: new THREE.Color(0xff9466),
-        ambientIntensity: 0.45,
-        fogColor: new THREE.Color(0xdca17c),
+        sunColor: new THREE.Color(0xffd0a0),
+        sunIntensity: 1.2,
+        hemiSky: new THREE.Color(0xffd4b0),
+        hemiGround: new THREE.Color(0x81745e),
+        ambientColor: new THREE.Color(0xd9c7b2),
+        ambientIntensity: 0.65,
+        fogColor: new THREE.Color(0xd1dce8),
         sunPos: new THREE.Vector3(-45, 22, 20),
         starsOpacity: 0.0
       }
@@ -200,6 +200,12 @@ export class DayNightCycle {
     }
     if (this.scene.background && this.scene.background.isColor) {
       this.scene.background.copy(kfA.fogColor).lerp(kfB.fogColor, t);
+    }
+
+    // Sky Dome Gradient
+    if (this.skyDome && this.skyDome.material && this.skyDome.material.uniforms) {
+      this.skyDome.material.uniforms.topColor.value.copy(kfA.hemiSky).lerp(kfB.hemiSky, t);
+      this.skyDome.material.uniforms.horizonColor.value.copy(kfA.fogColor).lerp(kfB.fogColor, t);
     }
 
     // Stars & Moon

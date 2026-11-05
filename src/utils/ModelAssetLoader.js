@@ -97,7 +97,9 @@ class ModelAssetLoader {
           // Configure shadows & materials on cached template
           gltf.scene.traverse((child) => {
             if (child.isMesh) {
-              child.castShadow = true;
+              // Only cast shadow on characters, obstacles, and trees
+              const isNonShadow = url.includes('mountain') || url.includes('grass') || url.includes('fern') || url.includes('flower') || url.includes('folliage');
+              child.castShadow = !isNonShadow;
               child.receiveShadow = true;
               if (child.material) {
                 // Ensure proper depth testing and lighting
@@ -118,6 +120,10 @@ class ModelAssetLoader {
 
   has(key) {
     return this.cache.has(key);
+  }
+
+  getRawScene(key) {
+    return this.cache.get(key) || null;
   }
 
   /**

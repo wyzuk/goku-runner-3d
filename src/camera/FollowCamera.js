@@ -4,9 +4,9 @@ export class FollowCamera {
   constructor(camera) {
     this.camera = camera;
     
-    // Normal follow offset relative to player (balanced 3rd person perspective)
-    this.offset = new THREE.Vector3(0, 3.2, -6.6);
-    this.lookOffset = new THREE.Vector3(0, 1.3, 8.0);
+    // Normal follow offset relative to player (balanced 3rd person perspective matching reference image)
+    this.offset = new THREE.Vector3(0, 3.85, -5.8);
+    this.lookOffset = new THREE.Vector3(0, 1.25, 9.0);
 
     this.currentPos = new THREE.Vector3();
     this.currentLookAt = new THREE.Vector3();
@@ -63,7 +63,7 @@ export class FollowCamera {
 
     // 3. Target position calculation
     const targetX = playerPos.x * 0.75 + this.offset.x; // Slight lateral lag for lane changes
-    const targetY = Math.max(2.8, playerPos.y * 0.5 + this.offset.y); // Dampened jump follow
+    const targetY = Math.max(3.3, playerPos.y * 0.5 + this.offset.y); // Dampened jump follow
     const targetZ = playerPos.z + this.offset.z;
 
     this.currentPos.x = THREE.MathUtils.lerp(this.currentPos.x, targetX, dt * 10.0);

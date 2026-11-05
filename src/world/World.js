@@ -47,14 +47,47 @@ export class World {
     this.heroLight = new THREE.PointLight(0xffeedd, 0.45, 12);
     this.scene.add(this.heroLight);
 
-    // 2. Procedural Sky & Fog
+    // 2. Procedural Anime Sky Dome & Atmospheric Fog
+    const skyGeo = new THREE.SphereGeometry(280, 24, 16);
+    this.skyMat = new THREE.ShaderMaterial({
+      uniforms: {
+        topColor: { value: new THREE.Color(0x1a72d6) },     // Deep anime azure blue
+        horizonColor: { value: new THREE.Color(0x9ae2ff) }, // Bright cyan-white horizon
+        offset: { value: 20.0 },
+        exponent: { value: 0.65 }
+      },
+      vertexShader: `
+        varying vec3 vWorldPosition;
+        void main() {
+          vec4 worldPosition = modelMatrix * vec4(position, 1.0);
+          vWorldPosition = worldPosition.xyz;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
+      fragmentShader: `
+        uniform vec3 topColor;
+        uniform vec3 horizonColor;
+        uniform float offset;
+        uniform float exponent;
+        varying vec3 vWorldPosition;
+        void main() {
+          float h = normalize(vWorldPosition + vec3(0.0, offset, 0.0)).y;
+          gl_FragColor = vec4(mix(horizonColor, topColor, max(pow(max(h, 0.0), exponent), 0.0)), 1.0);
+        }
+      `,
+      side: THREE.BackSide,
+      depthWrite: false
+    });
+    this.skyDome = new THREE.Mesh(skyGeo, this.skyMat);
+    this.scene.add(this.skyDome);
+
     // Natural atmospheric perspective: crystal-clear foreground for obstacles, smooth distance fading for mountains
-    this.scene.fog = new THREE.Fog(0x92c9f5, 65, 230);
-    this.scene.background = new THREE.Color(0x92c9f5);
+    this.scene.fog = new THREE.Fog(0x96d0f8, 70, 240);
+    this.scene.background = new THREE.Color(0x96d0f8);
 
     // 3. Subsystems
     this.chunkManager = new ChunkManager(this.scene, this.envAssets);
-    this.dayNightCycle = new DayNightCycle(this.scene, this.dirLight, this.hemiLight, this.ambientLight, null);
+    this.dayNightCycle = new DayNightCycle(this.scene, this.dirLight, this.hemiLight, this.ambientLight, this.skyDome);
     this.weatherSystem = new WeatherSystem(this.scene);
   }
 
@@ -68,6 +101,11 @@ export class World {
   }
 
   update(dt, playerZ) {
+    // Keep sky dome centered at player
+    if (this.skyDome) {
+      this.skyDome.position.set(0, 0, playerZ);
+    }
+
     // Keep directional sunlight and shadow frustum centered tightly around player
     if (this.dirLightTarget) {
       this.dirLightTarget.position.set(0, 0, playerZ);

@@ -1,7 +1,7 @@
 {
-  "name": "goku-runner-3d",
+  "name": "wyzuk-goku-run",
   "version": "1.0.0",
-  "description": "A browser-based 3D anime endless runner featuring Goku-inspired character modeling, procedural environments, obstacles, collectibles, Ki energy, and Super Saiyan transformation. Built with Three.js.",
+  "description": "Wyzuk Goku Run — A high-performance 3D anime endless runner featuring Goku, procedural environments, obstacles, collectibles, Ki energy, and Super Saiyan transformations. Built with Three.js.",
   "type": "module",
   "scripts": {
     "dev": "vite",
