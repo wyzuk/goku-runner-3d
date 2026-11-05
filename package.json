@@ -1,0 +1,21 @@
+{
+  "name": "goku-runner-3d",
+  "version": "1.0.0",
+  "description": "A browser-based 3D anime endless runner featuring Goku-inspired character modeling, procedural environments, obstacles, collectibles, Ki energy, and Super Saiyan transformation. Built with Three.js.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node scripts/full_qa_test.js"
+  },
+  "author": "Wyzuk",
+  "license": "MIT",
+  "dependencies": {
+    "three": "^0.187.0"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^25.16.0",
+    "vite": "^5.4.14"
+  }
+}
