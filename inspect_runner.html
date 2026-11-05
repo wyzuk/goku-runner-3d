@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Goku Runner 3D - Asset Inspector</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: radial-gradient(circle at 50% 50%, #252836 0%, #11131c 100%);
+      font-family: sans-serif;
+    }
+    #viewport {
+      width: 100vw;
+      height: 100vh;
+      display: block;
+    }
+    #status {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      color: #00e5ff;
+      font-size: 14px;
+      background: rgba(0,0,0,0.7);
+      padding: 6px 12px;
+      border-radius: 4px;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="status">Initializing Inspector...</div>
+  <canvas id="viewport"></canvas>
+  <script type="module" src="/scripts/inspector_client.js"></script>
+</body>
+</html>

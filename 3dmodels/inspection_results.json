@@ -1,0 +1,2135 @@
+[
+  {
+    "id": "baby_goku_super_saiyan_iii",
+    "filename": "baby_goku_super_saiyan_iii.glb",
+    "relPath": "3dmodels/baby_goku_super_saiyan_iii.glb",
+    "url": "/3dmodels/baby_goku_super_saiyan_iii.glb",
+    "expectedCategory": "Character",
+    "fileSize": 226320,
+    "fileSizeFormatted": "221 KB",
+    "previewImg": "previews/baby_goku_super_saiyan_iii.png",
+    "success": true,
+    "loadTimeMs": 113,
+    "geometry": {
+      "meshCount": 1,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 2661,
+      "totalVertices": 2443
+    },
+    "dimensions": {
+      "x": 2.07,
+      "y": 2.96,
+      "z": 2.22,
+      "maxDim": 2.96
+    },
+    "center": {
+      "x": 0.02,
+      "y": 1.48,
+      "z": -0.37
+    },
+    "materials": [
+      {
+        "name": "GKL_avt_base_png",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color"
+        ]
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Optimal / Highly Suitable",
+    "recommendations": [
+      "Lightweight, fast loading, ideal for Three.js real-time browser rendering.",
+      "Static mesh / No built-in GLTF animations (needs procedural animation or external rigging)."
+    ]
+  },
+  {
+    "id": "bush",
+    "filename": "bush.glb",
+    "relPath": "3dmodels/bush.glb",
+    "url": "/3dmodels/bush.glb",
+    "expectedCategory": "Environment / Foliage",
+    "fileSize": 7147804,
+    "fileSizeFormatted": "6.82 MB",
+    "previewImg": "previews/bush.png",
+    "success": true,
+    "loadTimeMs": 154,
+    "geometry": {
+      "meshCount": 4,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 128970,
+      "totalVertices": 174833
+    },
+    "dimensions": {
+      "x": 152.54,
+      "y": 112.7,
+      "z": 152.23,
+      "maxDim": 152.54
+    },
+    "center": {
+      "x": 0,
+      "y": 56.35,
+      "z": 0
+    },
+    "materials": [
+      {
+        "name": "Material_2.001",
+        "type": "MeshPhysicalMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": []
+      },
+      {
+        "name": "Material_3.001",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": []
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Heavy (Needs Optimization)",
+    "recommendations": [
+      "High polycount or textures (>100k tris or >8MB). Requires decimation or LOD."
+    ]
+  },
+  {
+    "id": "dead_trees",
+    "filename": "dead_trees.glb",
+    "relPath": "3dmodels/dead_trees.glb",
+    "url": "/3dmodels/dead_trees.glb",
+    "expectedCategory": "Environment / Foliage",
+    "fileSize": 1791520,
+    "fileSizeFormatted": "1.71 MB",
+    "previewImg": "previews/dead_trees.png",
+    "success": true,
+    "loadTimeMs": 41,
+    "geometry": {
+      "meshCount": 4,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 23489,
+      "totalVertices": 47017
+    },
+    "dimensions": {
+      "x": 2467.08,
+      "y": 759.88,
+      "z": 788.4,
+      "maxDim": 2467.08
+    },
+    "center": {
+      "x": 153.73,
+      "y": 305.65,
+      "z": -81.16
+    },
+    "materials": [
+      {
+        "name": "lambert42",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": []
+      },
+      {
+        "name": "lambert41",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": []
+      },
+      {
+        "name": "lambert40",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": []
+      },
+      {
+        "name": "lambert39",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": []
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Optimal / Highly Suitable",
+    "recommendations": [
+      "Lightweight, fast loading, ideal for Three.js real-time browser rendering."
+    ]
+  },
+  {
+    "id": "desert_rocks",
+    "filename": "desert_rocks.glb",
+    "relPath": "3dmodels/desert_rocks.glb",
+    "url": "/3dmodels/desert_rocks.glb",
+    "expectedCategory": "Environment / Rocks",
+    "fileSize": 944268,
+    "fileSizeFormatted": "922 KB",
+    "previewImg": "previews/desert_rocks.png",
+    "success": true,
+    "loadTimeMs": 69,
+    "geometry": {
+      "meshCount": 1,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 992,
+      "totalVertices": 599
+    },
+    "dimensions": {
+      "x": 1.25,
+      "y": 1.14,
+      "z": 2,
+      "maxDim": 2
+    },
+    "center": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "materials": [
+      {
+        "name": "TCE_Rocks_v04_Desert_Mat",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color",
+          "normal",
+          "roughness",
+          "metalness",
+          "ao"
+        ]
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Optimal / Highly Suitable",
+    "recommendations": [
+      "Lightweight, fast loading, ideal for Three.js real-time browser rendering."
+    ]
+  },
+  {
+    "id": "fallen_tree",
+    "filename": "fallen_tree.glb",
+    "relPath": "3dmodels/fallen_tree.glb",
+    "url": "/3dmodels/fallen_tree.glb",
+    "expectedCategory": "Obstacle / Environment",
+    "fileSize": 17192496,
+    "fileSizeFormatted": "16.40 MB",
+    "previewImg": "previews/fallen_tree.png",
+    "success": true,
+    "loadTimeMs": 534,
+    "geometry": {
+      "meshCount": 4,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 90515,
+      "totalVertices": 58275
+    },
+    "dimensions": {
+      "x": 6.29,
+      "y": 4.2,
+      "z": 4.39,
+      "maxDim": 6.29
+    },
+    "center": {
+      "x": -1.74,
+      "y": 1.47,
+      "z": -0.69
+    },
+    "materials": [
+      {
+        "name": "tree_small_branches",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color",
+          "normal",
+          "roughness",
+          "metalness"
+        ]
+      },
+      {
+        "name": "tree_body",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color",
+          "normal",
+          "roughness",
+          "metalness",
+          "ao"
+        ]
+      },
+      {
+        "name": "tree_branches",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color",
+          "normal",
+          "roughness",
+          "metalness",
+          "ao"
+        ]
+      },
+      {
+        "name": "tree_roots",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color",
+          "normal",
+          "roughness",
+          "metalness",
+          "ao"
+        ]
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Heavy (Needs Optimization)",
+    "recommendations": [
+      "High polycount or textures (>100k tris or >8MB). Requires decimation or LOD."
+    ]
+  },
+  {
+    "id": "fern",
+    "filename": "fern.glb",
+    "relPath": "3dmodels/fern.glb",
+    "url": "/3dmodels/fern.glb",
+    "expectedCategory": "Environment / Foliage",
+    "fileSize": 1314476,
+    "fileSizeFormatted": "1.25 MB",
+    "previewImg": "previews/fern.png",
+    "success": true,
+    "loadTimeMs": 71,
+    "geometry": {
+      "meshCount": 1,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 560,
+      "totalVertices": 480
+    },
+    "dimensions": {
+      "x": 2.17,
+      "y": 0.93,
+      "z": 2.26,
+      "maxDim": 2.26
+    },
+    "center": {
+      "x": 0.01,
+      "y": 0.46,
+      "z": -0.06
+    },
+    "materials": [
+      {
+        "name": "Tree_0Mat",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color",
+          "normal",
+          "roughness",
+          "metalness"
+        ]
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Optimal / Highly Suitable",
+    "recommendations": [
+      "Lightweight, fast loading, ideal for Three.js real-time browser rendering."
+    ]
+  },
+  {
+    "id": "flat_rocks",
+    "filename": "flat_rocks.glb",
+    "relPath": "3dmodels/flat_rocks.glb",
+    "url": "/3dmodels/flat_rocks.glb",
+    "expectedCategory": "Environment / Rocks",
+    "fileSize": 3888488,
+    "fileSizeFormatted": "3.71 MB",
+    "previewImg": "previews/flat_rocks.png",
+    "success": true,
+    "loadTimeMs": 297,
+    "geometry": {
+      "meshCount": 4,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 1442,
+      "totalVertices": 1044
+    },
+    "dimensions": {
+      "x": 17.91,
+      "y": 1.88,
+      "z": 10.83,
+      "maxDim": 17.91
+    },
+    "center": {
+      "x": -0.29,
+      "y": 0.01,
+      "z": 0.08
+    },
+    "materials": [
+      {
+        "name": "rocksflat",
+        "type": "MeshPhysicalMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "FrontSide",
+        "textures": [
+          "diffuse/color",
+          "normal",
+          "roughness",
+          "metalness"
+        ]
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Optimal / Highly Suitable",
+    "recommendations": [
+      "Lightweight, fast loading, ideal for Three.js real-time browser rendering."
+    ]
+  },
+  {
+    "id": "flowering_plant",
+    "filename": "flowering_plant.glb",
+    "relPath": "3dmodels/flowering_plant.glb",
+    "url": "/3dmodels/flowering_plant.glb",
+    "expectedCategory": "Environment / Foliage",
+    "fileSize": 1268180,
+    "fileSizeFormatted": "1.21 MB",
+    "previewImg": "previews/flowering_plant.png",
+    "success": true,
+    "loadTimeMs": 69,
+    "geometry": {
+      "meshCount": 3,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 13782,
+      "totalVertices": 10728
+    },
+    "dimensions": {
+      "x": 0.9,
+      "y": 1.08,
+      "z": 0.68,
+      "maxDim": 1.08
+    },
+    "center": {
+      "x": 0.07,
+      "y": 0.45,
+      "z": 0.1
+    },
+    "materials": [
+      {
+        "name": "plant_mat",
+        "type": "MeshBasicMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color"
+        ]
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Optimal / Highly Suitable",
+    "recommendations": [
+      "Lightweight, fast loading, ideal for Three.js real-time browser rendering."
+    ]
+  },
+  {
+    "id": "grass",
+    "filename": "grass.glb",
+    "relPath": "3dmodels/grass.glb",
+    "url": "/3dmodels/grass.glb",
+    "expectedCategory": "Environment / Foliage",
+    "fileSize": 1685832,
+    "fileSizeFormatted": "1.61 MB",
+    "previewImg": "previews/grass.png",
+    "success": true,
+    "loadTimeMs": 58,
+    "geometry": {
+      "meshCount": 1,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 117,
+      "totalVertices": 81
+    },
+    "dimensions": {
+      "x": 1.1,
+      "y": 1.04,
+      "z": 0.59,
+      "maxDim": 1.1
+    },
+    "center": {
+      "x": 0.01,
+      "y": 0.41,
+      "z": -0.05
+    },
+    "materials": [
+      {
+        "name": "material_0",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "emissive",
+          "ao"
+        ]
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Optimal / Highly Suitable",
+    "recommendations": [
+      "Lightweight, fast loading, ideal for Three.js real-time browser rendering."
+    ]
+  },
+  {
+    "id": "grass_patch",
+    "filename": "grass_patch.glb",
+    "relPath": "3dmodels/grass_patch.glb",
+    "url": "/3dmodels/grass_patch.glb",
+    "expectedCategory": "Environment / Foliage",
+    "fileSize": 1026104,
+    "fileSizeFormatted": "1002 KB",
+    "previewImg": "previews/grass_patch.png",
+    "success": true,
+    "loadTimeMs": 69,
+    "geometry": {
+      "meshCount": 3,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 184,
+      "totalVertices": 207
+    },
+    "dimensions": {
+      "x": 5.78,
+      "y": 3.43,
+      "z": 4.54,
+      "maxDim": 5.78
+    },
+    "center": {
+      "x": 0.12,
+      "y": 1.47,
+      "z": -0.41
+    },
+    "materials": [
+      {
+        "name": "ST_GBlades_2_Mat",
+        "type": "MeshStandardMaterial",
+        "transparent": true,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color"
+        ]
+      },
+      {
+        "name": "ST_GBlades_3_Mat",
+        "type": "MeshStandardMaterial",
+        "transparent": true,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color"
+        ]
+      },
+      {
+        "name": "ST_GBlades_1_Mat",
+        "type": "MeshStandardMaterial",
+        "transparent": true,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color"
+        ]
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Optimal / Highly Suitable",
+    "recommendations": [
+      "Lightweight, fast loading, ideal for Three.js real-time browser rendering."
+    ]
+  },
+  {
+    "id": "grass_patches",
+    "filename": "grass_patches.glb",
+    "relPath": "3dmodels/grass_patches.glb",
+    "url": "/3dmodels/grass_patches.glb",
+    "expectedCategory": "Environment / Foliage",
+    "fileSize": 28888,
+    "fileSizeFormatted": "28 KB",
+    "previewImg": "previews/grass_patches.png",
+    "success": true,
+    "loadTimeMs": 33,
+    "geometry": {
+      "meshCount": 2,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 441,
+      "totalVertices": 567
+    },
+    "dimensions": {
+      "x": 1.62,
+      "y": 0.51,
+      "z": 0.73,
+      "maxDim": 1.62
+    },
+    "center": {
+      "x": -0.37,
+      "y": 0.25,
+      "z": -0.03
+    },
+    "materials": [
+      {
+        "name": "Scene_-_Root",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color"
+        ]
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Optimal / Highly Suitable",
+    "recommendations": [
+      "Lightweight, fast loading, ideal for Three.js real-time browser rendering."
+    ]
+  },
+  {
+    "id": "large_stone",
+    "filename": "large_stone.glb",
+    "relPath": "3dmodels/large_stone.glb",
+    "url": "/3dmodels/large_stone.glb",
+    "expectedCategory": "Obstacle / Environment",
+    "fileSize": 2514784,
+    "fileSizeFormatted": "2.40 MB",
+    "previewImg": "previews/large_stone.png",
+    "success": true,
+    "loadTimeMs": 235,
+    "geometry": {
+      "meshCount": 5,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 41701,
+      "totalVertices": 23977
+    },
+    "dimensions": {
+      "x": 1.83,
+      "y": 1.4,
+      "z": 2.1,
+      "maxDim": 2.1
+    },
+    "center": {
+      "x": -13.51,
+      "y": -0.63,
+      "z": 1.21
+    },
+    "materials": [
+      {
+        "name": "cropped_textured_mesh_0",
+        "type": "MeshBasicMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color"
+        ]
+      },
+      {
+        "name": "cropped_textured_mesh_1",
+        "type": "MeshBasicMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color"
+        ]
+      },
+      {
+        "name": "cropped_textured_mesh_2",
+        "type": "MeshBasicMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color"
+        ]
+      },
+      {
+        "name": "cropped_textured_mesh_3",
+        "type": "MeshBasicMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color"
+        ]
+      },
+      {
+        "name": "cropped_textured_mesh_4",
+        "type": "MeshBasicMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color"
+        ]
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Moderate / Acceptable",
+    "recommendations": [
+      "Acceptable for hero props or background, but avoid dense instancing."
+    ]
+  },
+  {
+    "id": "low_poly_mountain_1",
+    "filename": "low_poly_mountain (1).glb",
+    "relPath": "3dmodels/low_poly_mountain (1).glb",
+    "url": "/3dmodels/low_poly_mountain%20(1).glb",
+    "expectedCategory": "Environment / Scenery",
+    "fileSize": 238720,
+    "fileSizeFormatted": "233 KB",
+    "previewImg": "previews/low_poly_mountain_1.png",
+    "success": true,
+    "loadTimeMs": 20,
+    "geometry": {
+      "meshCount": 1,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 1965,
+      "totalVertices": 5616
+    },
+    "dimensions": {
+      "x": 139.09,
+      "y": 98.91,
+      "z": 180.94,
+      "maxDim": 180.94
+    },
+    "center": {
+      "x": -411.4,
+      "y": 155.22,
+      "z": -419.9
+    },
+    "materials": [
+      {
+        "name": "Rock",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "FrontSide",
+        "textures": []
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Optimal / Highly Suitable",
+    "recommendations": [
+      "Lightweight, fast loading, ideal for Three.js real-time browser rendering."
+    ]
+  },
+  {
+    "id": "low_poly_mountain_2",
+    "filename": "low_poly_mountain (2).glb",
+    "relPath": "3dmodels/low_poly_mountain (2).glb",
+    "url": "/3dmodels/low_poly_mountain%20(2).glb",
+    "expectedCategory": "Environment / Scenery",
+    "fileSize": 119264,
+    "fileSizeFormatted": "116 KB",
+    "previewImg": "previews/low_poly_mountain_2.png",
+    "success": true,
+    "loadTimeMs": 56,
+    "geometry": {
+      "meshCount": 2,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 1570,
+      "totalVertices": 3030
+    },
+    "dimensions": {
+      "x": 203.2,
+      "y": 253.23,
+      "z": 203.2,
+      "maxDim": 253.23
+    },
+    "center": {
+      "x": -0.38,
+      "y": 118.5,
+      "z": -3.82
+    },
+    "materials": [
+      {
+        "name": "Material_25",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": []
+      },
+      {
+        "name": "Material_26",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": []
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Optimal / Highly Suitable",
+    "recommendations": [
+      "Lightweight, fast loading, ideal for Three.js real-time browser rendering."
+    ]
+  },
+  {
+    "id": "low_poly_mountain",
+    "filename": "low_poly_mountain.glb",
+    "relPath": "3dmodels/low_poly_mountain.glb",
+    "url": "/3dmodels/low_poly_mountain.glb",
+    "expectedCategory": "Environment / Scenery",
+    "fileSize": 148076,
+    "fileSizeFormatted": "145 KB",
+    "previewImg": "previews/low_poly_mountain.png",
+    "success": true,
+    "loadTimeMs": 66,
+    "geometry": {
+      "meshCount": 1,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 1103,
+      "totalVertices": 3107
+    },
+    "dimensions": {
+      "x": 115.99,
+      "y": 65.54,
+      "z": 115.9,
+      "maxDim": 115.99
+    },
+    "center": {
+      "x": -259.39,
+      "y": 138.34,
+      "z": -290
+    },
+    "materials": [
+      {
+        "name": "Rock",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "FrontSide",
+        "textures": []
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Optimal / Highly Suitable",
+    "recommendations": [
+      "Lightweight, fast loading, ideal for Three.js real-time browser rendering."
+    ]
+  },
+  {
+    "id": "low_poly_mountain_free",
+    "filename": "low_poly_mountain_free.glb",
+    "relPath": "3dmodels/low_poly_mountain_free.glb",
+    "url": "/3dmodels/low_poly_mountain_free.glb",
+    "expectedCategory": "Environment / Scenery",
+    "fileSize": 558244,
+    "fileSizeFormatted": "545 KB",
+    "previewImg": "previews/low_poly_mountain_free.png",
+    "success": true,
+    "loadTimeMs": 141,
+    "geometry": {
+      "meshCount": 2,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 5137,
+      "totalVertices": 15411
+    },
+    "dimensions": {
+      "x": 5.73,
+      "y": 2.29,
+      "z": 6.03,
+      "maxDim": 6.03
+    },
+    "center": {
+      "x": 1.29,
+      "y": 1.14,
+      "z": -1.2
+    },
+    "materials": [
+      {
+        "name": "material",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": []
+      },
+      {
+        "name": "material_1",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": []
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Optimal / Highly Suitable",
+    "recommendations": [
+      "Lightweight, fast loading, ideal for Three.js real-time browser rendering."
+    ]
+  },
+  {
+    "id": "mossy_old_tree_log",
+    "filename": "mossy_old_tree_log.glb",
+    "relPath": "3dmodels/mossy_old_tree_log.glb",
+    "url": "/3dmodels/mossy_old_tree_log.glb",
+    "expectedCategory": "Obstacle / Environment",
+    "fileSize": 3577104,
+    "fileSizeFormatted": "3.41 MB",
+    "previewImg": "previews/mossy_old_tree_log.png",
+    "success": true,
+    "loadTimeMs": 117,
+    "geometry": {
+      "meshCount": 1,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 20390,
+      "totalVertices": 12835
+    },
+    "dimensions": {
+      "x": 1.53,
+      "y": 0.58,
+      "z": 1.22,
+      "maxDim": 1.53
+    },
+    "center": {
+      "x": 0.23,
+      "y": 0.24,
+      "z": 1.92
+    },
+    "materials": [
+      {
+        "name": "ForestLogMedium_1",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "FrontSide",
+        "textures": [
+          "diffuse/color",
+          "normal",
+          "roughness",
+          "metalness"
+        ]
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Optimal / Highly Suitable",
+    "recommendations": [
+      "Lightweight, fast loading, ideal for Three.js real-time browser rendering."
+    ]
+  },
+  {
+    "id": "oak_tree",
+    "filename": "oak_tree.glb",
+    "relPath": "3dmodels/oak_tree.glb",
+    "url": "/3dmodels/oak_tree.glb",
+    "expectedCategory": "Environment / Foliage",
+    "fileSize": 7327152,
+    "fileSizeFormatted": "6.99 MB",
+    "previewImg": "previews/oak_tree.png",
+    "success": true,
+    "loadTimeMs": 432,
+    "geometry": {
+      "meshCount": 2,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 8364,
+      "totalVertices": 6526
+    },
+    "dimensions": {
+      "x": 10.53,
+      "y": 8.83,
+      "z": 8.2,
+      "maxDim": 10.53
+    },
+    "center": {
+      "x": -1.12,
+      "y": 4.41,
+      "z": -0.2
+    },
+    "materials": [
+      {
+        "name": "mossybark02_0Mat",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color",
+          "normal",
+          "roughness",
+          "metalness"
+        ]
+      },
+      {
+        "name": "oak_leaf_1Mat",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color",
+          "normal",
+          "roughness",
+          "metalness"
+        ]
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Optimal / Highly Suitable",
+    "recommendations": [
+      "Lightweight, fast loading, ideal for Three.js real-time browser rendering."
+    ]
+  },
+  {
+    "id": "pine_tree_1",
+    "filename": "pine_tree (1).glb",
+    "relPath": "3dmodels/pine_tree (1).glb",
+    "url": "/3dmodels/pine_tree%20(1).glb",
+    "expectedCategory": "Environment / Foliage",
+    "fileSize": 1624028,
+    "fileSizeFormatted": "1.55 MB",
+    "previewImg": "previews/pine_tree_1.png",
+    "success": true,
+    "loadTimeMs": 102,
+    "geometry": {
+      "meshCount": 2,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 2173,
+      "totalVertices": 5020
+    },
+    "dimensions": {
+      "x": 217.06,
+      "y": 307.78,
+      "z": 217.12,
+      "maxDim": 307.78
+    },
+    "center": {
+      "x": -0.84,
+      "y": 153.89,
+      "z": 3.93
+    },
+    "materials": [
+      {
+        "name": "Leavs",
+        "type": "MeshStandardMaterial",
+        "transparent": true,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color"
+        ]
+      },
+      {
+        "name": "Trank",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color",
+          "normal"
+        ]
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Optimal / Highly Suitable",
+    "recommendations": [
+      "Lightweight, fast loading, ideal for Three.js real-time browser rendering."
+    ]
+  },
+  {
+    "id": "pine_tree",
+    "filename": "pine_tree.glb",
+    "relPath": "3dmodels/pine_tree.glb",
+    "url": "/3dmodels/pine_tree.glb",
+    "expectedCategory": "Environment / Foliage",
+    "fileSize": 27193468,
+    "fileSizeFormatted": "25.93 MB",
+    "previewImg": "previews/pine_tree.png",
+    "success": true,
+    "loadTimeMs": 299,
+    "geometry": {
+      "meshCount": 12,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 437500,
+      "totalVertices": 685361
+    },
+    "dimensions": {
+      "x": 23.07,
+      "y": 47.69,
+      "z": 25.03,
+      "maxDim": 47.69
+    },
+    "center": {
+      "x": -0.25,
+      "y": 23.84,
+      "z": 0.19
+    },
+    "materials": [
+      {
+        "name": "Malzeme.001",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": []
+      },
+      {
+        "name": "Malzeme",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": []
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Heavy / Unsuitable without Decimation",
+    "recommendations": [
+      "File size >20MB; will cause massive memory consumption and network delay."
+    ]
+  },
+  {
+    "id": "realistics_grass_07",
+    "filename": "realistics_grass_07.glb",
+    "relPath": "3dmodels/realistics_grass_07.glb",
+    "url": "/3dmodels/realistics_grass_07.glb",
+    "expectedCategory": "Environment / Foliage",
+    "fileSize": 260992,
+    "fileSizeFormatted": "255 KB",
+    "previewImg": "previews/realistics_grass_07.png",
+    "success": true,
+    "loadTimeMs": 241,
+    "geometry": {
+      "meshCount": 1,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 728,
+      "totalVertices": 1490
+    },
+    "dimensions": {
+      "x": 45.48,
+      "y": 34.78,
+      "z": 45.72,
+      "maxDim": 45.72
+    },
+    "center": {
+      "x": -0.02,
+      "y": 15.25,
+      "z": -1.14
+    },
+    "materials": [
+      {
+        "name": "Material",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": []
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Optimal / Highly Suitable",
+    "recommendations": [
+      "Lightweight, fast loading, ideal for Three.js real-time browser rendering."
+    ]
+  },
+  {
+    "id": "realistic_trees_collection",
+    "filename": "realistic_trees_collection.glb",
+    "relPath": "3dmodels/realistic_trees_collection.glb",
+    "url": "/3dmodels/realistic_trees_collection.glb",
+    "expectedCategory": "Environment / Foliage",
+    "fileSize": 42333844,
+    "fileSizeFormatted": "40.37 MB",
+    "previewImg": "previews/realistic_trees_collection.png",
+    "success": true,
+    "loadTimeMs": 1468,
+    "geometry": {
+      "meshCount": 15,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 127462,
+      "totalVertices": 261435
+    },
+    "dimensions": {
+      "x": 472.68,
+      "y": 110.36,
+      "z": 112.44,
+      "maxDim": 472.68
+    },
+    "center": {
+      "x": -8.72,
+      "y": 53.68,
+      "z": 2.39
+    },
+    "materials": [
+      {
+        "name": "branches",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color",
+          "normal"
+        ]
+      },
+      {
+        "name": "leaves",
+        "type": "MeshStandardMaterial",
+        "transparent": true,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color"
+        ]
+      },
+      {
+        "name": "branches.010",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color",
+          "normal"
+        ]
+      },
+      {
+        "name": "leaves.010",
+        "type": "MeshStandardMaterial",
+        "transparent": true,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color"
+        ]
+      },
+      {
+        "name": "branches.011",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color",
+          "normal"
+        ]
+      },
+      {
+        "name": "leaves.011",
+        "type": "MeshStandardMaterial",
+        "transparent": true,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color"
+        ]
+      },
+      {
+        "name": "leaves.006",
+        "type": "MeshStandardMaterial",
+        "transparent": true,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color"
+        ]
+      },
+      {
+        "name": "material_0",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color",
+          "normal"
+        ]
+      },
+      {
+        "name": "leaves.001",
+        "type": "MeshStandardMaterial",
+        "transparent": true,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color"
+        ]
+      },
+      {
+        "name": "branches.001",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color",
+          "normal"
+        ]
+      },
+      {
+        "name": "leaves.009",
+        "type": "MeshStandardMaterial",
+        "transparent": true,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color"
+        ]
+      },
+      {
+        "name": "branches.009",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color",
+          "normal"
+        ]
+      },
+      {
+        "name": "leaves.002",
+        "type": "MeshStandardMaterial",
+        "transparent": true,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color"
+        ]
+      },
+      {
+        "name": "branches.002",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color",
+          "normal"
+        ]
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Heavy / Unsuitable without Decimation",
+    "recommendations": [
+      "File size >20MB; will cause massive memory consumption and network delay."
+    ]
+  },
+  {
+    "id": "rocks_and_trees",
+    "filename": "rocks_and_trees.glb",
+    "relPath": "3dmodels/rocks_and_trees.glb",
+    "url": "/3dmodels/rocks_and_trees.glb",
+    "expectedCategory": "Environment / Scenery",
+    "fileSize": 506796,
+    "fileSizeFormatted": "495 KB",
+    "previewImg": "previews/rocks_and_trees.png",
+    "success": true,
+    "loadTimeMs": 88,
+    "geometry": {
+      "meshCount": 43,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 4710,
+      "totalVertices": 11982
+    },
+    "dimensions": {
+      "x": 1.64,
+      "y": 0.49,
+      "z": 0.95,
+      "maxDim": 1.64
+    },
+    "center": {
+      "x": 0,
+      "y": 0.04,
+      "z": 0
+    },
+    "materials": [
+      {
+        "name": "material_1",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color"
+        ]
+      },
+      {
+        "name": "material_2",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": []
+      },
+      {
+        "name": "material_3",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color"
+        ]
+      },
+      {
+        "name": "material",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": []
+      },
+      {
+        "name": "material_4",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color"
+        ]
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Optimal / Highly Suitable",
+    "recommendations": [
+      "Lightweight, fast loading, ideal for Three.js real-time browser rendering."
+    ]
+  },
+  {
+    "id": "smallrocks1",
+    "filename": "smallrocks1.glb",
+    "relPath": "3dmodels/smallrocks1.glb",
+    "url": "/3dmodels/smallrocks1.glb",
+    "expectedCategory": "Environment / Rocks",
+    "fileSize": 3170452,
+    "fileSizeFormatted": "3.02 MB",
+    "previewImg": "previews/smallrocks1.png",
+    "success": true,
+    "loadTimeMs": 121,
+    "geometry": {
+      "meshCount": 6,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 2950,
+      "totalVertices": 2037
+    },
+    "dimensions": {
+      "x": 4.05,
+      "y": 1.48,
+      "z": 3.78,
+      "maxDim": 4.05
+    },
+    "center": {
+      "x": -0.81,
+      "y": 0.18,
+      "z": -0.66
+    },
+    "materials": [
+      {
+        "name": "smallrocks",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "FrontSide",
+        "textures": [
+          "diffuse/color",
+          "normal",
+          "roughness",
+          "metalness"
+        ]
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Optimal / Highly Suitable",
+    "recommendations": [
+      "Lightweight, fast loading, ideal for Three.js real-time browser rendering."
+    ]
+  },
+  {
+    "id": "small_folliage_plant",
+    "filename": "small_folliage_plant.glb",
+    "relPath": "3dmodels/small_folliage_plant.glb",
+    "url": "/3dmodels/small_folliage_plant.glb",
+    "expectedCategory": "Environment / Foliage",
+    "fileSize": 1248912,
+    "fileSizeFormatted": "1.19 MB",
+    "previewImg": "previews/small_folliage_plant.png",
+    "success": true,
+    "loadTimeMs": 165,
+    "geometry": {
+      "meshCount": 1,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 2010,
+      "totalVertices": 3644
+    },
+    "dimensions": {
+      "x": 9.16,
+      "y": 3.76,
+      "z": 3.94,
+      "maxDim": 9.16
+    },
+    "center": {
+      "x": 0.46,
+      "y": 1,
+      "z": -0.28
+    },
+    "materials": [
+      {
+        "name": "Material",
+        "type": "MeshPhysicalMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color",
+          "normal",
+          "roughness",
+          "metalness"
+        ]
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Optimal / Highly Suitable",
+    "recommendations": [
+      "Lightweight, fast loading, ideal for Three.js real-time browser rendering."
+    ]
+  },
+  {
+    "id": "small_rocks",
+    "filename": "small_rocks.glb",
+    "relPath": "3dmodels/small_rocks.glb",
+    "url": "/3dmodels/small_rocks.glb",
+    "expectedCategory": "Environment / Rocks",
+    "fileSize": 4116544,
+    "fileSizeFormatted": "3.93 MB",
+    "previewImg": "previews/small_rocks.png",
+    "success": true,
+    "loadTimeMs": 163,
+    "geometry": {
+      "meshCount": 5,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 376,
+      "totalVertices": 315
+    },
+    "dimensions": {
+      "x": 2.24,
+      "y": 0.57,
+      "z": 1.93,
+      "maxDim": 2.24
+    },
+    "center": {
+      "x": -0.11,
+      "y": 0.3,
+      "z": -0.93
+    },
+    "materials": [
+      {
+        "name": "smallrocks",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "FrontSide",
+        "textures": [
+          "diffuse/color",
+          "normal",
+          "roughness",
+          "metalness"
+        ]
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Optimal / Highly Suitable",
+    "recommendations": [
+      "Lightweight, fast loading, ideal for Three.js real-time browser rendering."
+    ]
+  },
+  {
+    "id": "small_trees",
+    "filename": "small_trees.glb",
+    "relPath": "3dmodels/small_trees.glb",
+    "url": "/3dmodels/small_trees.glb",
+    "expectedCategory": "Environment / Foliage",
+    "fileSize": 122988,
+    "fileSizeFormatted": "120 KB",
+    "previewImg": "previews/small_trees.png",
+    "success": true,
+    "loadTimeMs": 77,
+    "geometry": {
+      "meshCount": 2,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 200,
+      "totalVertices": 400
+    },
+    "dimensions": {
+      "x": 4.91,
+      "y": 1.17,
+      "z": 4.82,
+      "maxDim": 4.91
+    },
+    "center": {
+      "x": 0.09,
+      "y": 0.59,
+      "z": -0.07
+    },
+    "materials": [
+      {
+        "name": "red-baron-grass-ornamental-Va7qqJC-600",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color"
+        ]
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Optimal / Highly Suitable",
+    "recommendations": [
+      "Lightweight, fast loading, ideal for Three.js real-time browser rendering."
+    ]
+  },
+  {
+    "id": "stalagmitecrystalore_cluster",
+    "filename": "stalagmitecrystalore_cluster_-_meshy.glb",
+    "relPath": "3dmodels/stalagmitecrystalore_cluster_-_meshy.glb",
+    "url": "/3dmodels/stalagmitecrystalore_cluster_-_meshy.glb",
+    "expectedCategory": "Environment / Collectible / Obstacle",
+    "fileSize": 2638356,
+    "fileSizeFormatted": "2.52 MB",
+    "previewImg": "previews/stalagmitecrystalore_cluster.png",
+    "success": true,
+    "loadTimeMs": 132,
+    "geometry": {
+      "meshCount": 1,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 10000,
+      "totalVertices": 30000
+    },
+    "dimensions": {
+      "x": 2,
+      "y": 1.82,
+      "z": 1.56,
+      "maxDim": 2
+    },
+    "center": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "materials": [
+      {
+        "name": "Material.001",
+        "type": "MeshPhysicalMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color"
+        ]
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Optimal / Highly Suitable",
+    "recommendations": [
+      "Lightweight, fast loading, ideal for Three.js real-time browser rendering."
+    ]
+  },
+  {
+    "id": "stylized_bush",
+    "filename": "stylized_bush.glb",
+    "relPath": "3dmodels/stylized_bush.glb",
+    "url": "/3dmodels/stylized_bush.glb",
+    "expectedCategory": "Environment / Foliage",
+    "fileSize": 585288,
+    "fileSizeFormatted": "572 KB",
+    "previewImg": "previews/stylized_bush.png",
+    "success": true,
+    "loadTimeMs": 224,
+    "geometry": {
+      "meshCount": 1,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 988,
+      "totalVertices": 629
+    },
+    "dimensions": {
+      "x": 1.51,
+      "y": 0.96,
+      "z": 1.58,
+      "maxDim": 1.58
+    },
+    "center": {
+      "x": -0.03,
+      "y": 0.45,
+      "z": -0.03
+    },
+    "materials": [
+      {
+        "name": "stylized_bush",
+        "type": "MeshPhysicalMaterial",
+        "transparent": true,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color"
+        ]
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Optimal / Highly Suitable",
+    "recommendations": [
+      "Lightweight, fast loading, ideal for Three.js real-time browser rendering."
+    ]
+  },
+  {
+    "id": "tree_broken_mossy_branch",
+    "filename": "tree_broken_mossy_branch_pbr_photogrammetry_free.glb",
+    "relPath": "3dmodels/tree_broken_mossy_branch_pbr_photogrammetry_free.glb",
+    "url": "/3dmodels/tree_broken_mossy_branch_pbr_photogrammetry_free.glb",
+    "expectedCategory": "Obstacle / Environment",
+    "fileSize": 5824016,
+    "fileSizeFormatted": "5.55 MB",
+    "previewImg": "previews/tree_broken_mossy_branch.png",
+    "success": true,
+    "loadTimeMs": 377,
+    "geometry": {
+      "meshCount": 1,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 3941,
+      "totalVertices": 11823
+    },
+    "dimensions": {
+      "x": 0.62,
+      "y": 0.13,
+      "z": 0.12,
+      "maxDim": 0.62
+    },
+    "center": {
+      "x": 0.01,
+      "y": 0.07,
+      "z": 0
+    },
+    "materials": [
+      {
+        "name": "phong_mossybranch",
+        "type": "MeshPhysicalMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color",
+          "normal",
+          "roughness",
+          "metalness",
+          "emissive",
+          "ao"
+        ]
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Optimal / Highly Suitable",
+    "recommendations": [
+      "Lightweight, fast loading, ideal for Three.js real-time browser rendering."
+    ]
+  },
+  {
+    "id": "wooden_bridge",
+    "filename": "wooden_bridge.glb",
+    "relPath": "3dmodels/wooden_bridge.glb",
+    "url": "/3dmodels/wooden_bridge.glb",
+    "expectedCategory": "Obstacle / Pathway",
+    "fileSize": 2987536,
+    "fileSizeFormatted": "2.85 MB",
+    "previewImg": "previews/wooden_bridge.png",
+    "success": true,
+    "loadTimeMs": 133,
+    "geometry": {
+      "meshCount": 1,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 6344,
+      "totalVertices": 4036
+    },
+    "dimensions": {
+      "x": 420.02,
+      "y": 83.35,
+      "z": 152.74,
+      "maxDim": 420.02
+    },
+    "center": {
+      "x": -0.6,
+      "y": 24.58,
+      "z": 0
+    },
+    "materials": [
+      {
+        "name": "wire_088088225",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color",
+          "normal",
+          "roughness",
+          "metalness",
+          "ao"
+        ]
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Optimal / Highly Suitable",
+    "recommendations": [
+      "Lightweight, fast loading, ideal for Three.js real-time browser rendering."
+    ]
+  },
+  {
+    "id": "gogeta_character",
+    "filename": "extracted_gogeta/source/a931b105-49c4-43f6-9362-51f3478d2624.glb",
+    "relPath": "3dmodels/extracted_gogeta/source/a931b105-49c4-43f6-9362-51f3478d2624.glb",
+    "url": "/3dmodels/extracted_gogeta/source/a931b105-49c4-43f6-9362-51f3478d2624.glb",
+    "expectedCategory": "Character (Gogeta)",
+    "fileSize": 1895840,
+    "fileSizeFormatted": "1.81 MB",
+    "previewImg": "previews/gogeta_character.png",
+    "success": true,
+    "loadTimeMs": 120,
+    "geometry": {
+      "meshCount": 1,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 47758,
+      "totalVertices": 28735
+    },
+    "dimensions": {
+      "x": 0.4,
+      "y": 1,
+      "z": 0.78,
+      "maxDim": 1
+    },
+    "center": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "materials": [
+      {
+        "name": "tripo_material_1944a03a-c55f-401d-8413-1cf2201cdbc0",
+        "type": "MeshStandardMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "FrontSide",
+        "textures": [
+          "diffuse/color"
+        ]
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Moderate / Acceptable",
+    "recommendations": [
+      "Acceptable for hero props or background, but avoid dense instancing.",
+      "Static mesh / No built-in GLTF animations (needs procedural animation or external rigging)."
+    ]
+  },
+  {
+    "id": "stylized_mountain_extracted",
+    "filename": "extracted_stylized_mountain/source/montain.glb",
+    "relPath": "3dmodels/extracted_stylized_mountain/source/montain.glb",
+    "url": "/3dmodels/extracted_stylized_mountain/source/montain.glb",
+    "expectedCategory": "Environment / Scenery",
+    "fileSize": 24736584,
+    "fileSizeFormatted": "23.59 MB",
+    "previewImg": "previews/stylized_mountain_extracted.png",
+    "success": true,
+    "loadTimeMs": 604,
+    "geometry": {
+      "meshCount": 1,
+      "skinnedMeshCount": 0,
+      "totalTriangles": 500000,
+      "totalVertices": 293904
+    },
+    "dimensions": {
+      "x": 0.69,
+      "y": 0.73,
+      "z": 0.65,
+      "maxDim": 0.73
+    },
+    "center": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "materials": [
+      {
+        "name": "Material.001",
+        "type": "MeshPhysicalMaterial",
+        "transparent": false,
+        "opacity": 1,
+        "wireframe": false,
+        "side": "DoubleSide",
+        "textures": [
+          "diffuse/color",
+          "normal",
+          "roughness",
+          "metalness"
+        ]
+      }
+    ],
+    "animations": [],
+    "skeleton": {
+      "hasSkeleton": false,
+      "boneCount": 0,
+      "bonesSample": []
+    },
+    "estimatedSuitability": "Heavy / Unsuitable without Decimation",
+    "recommendations": [
+      "File size >20MB; will cause massive memory consumption and network delay."
+    ]
+  }
+]

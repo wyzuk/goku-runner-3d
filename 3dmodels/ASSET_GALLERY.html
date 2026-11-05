@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Goku Runner 3D — 3D Asset Preview Gallery & Contact Sheet</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --card-bg: #161b22;
+      --card-border: #30363d;
+      --accent: #ff9900;
+      --accent-blue: #58a6ff;
+      --text: #c9d1d9;
+      --text-muted: #8b949e;
+      --success: #3fb950;
+      --warning: #d29922;
+      --danger: #f85149;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 24px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+    header {
+      max-width: 1400px;
+      margin: 0 auto 24px auto;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 20px;
+    }
+    h1 {
+      margin: 0 0 8px 0;
+      color: #fff;
+      font-size: 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .badge-optimal { background: rgba(63,185,80,0.2); color: var(--success); border: 1px solid var(--success); }
+    .badge-moderate { background: rgba(210,153,34,0.2); color: var(--warning); border: 1px solid var(--warning); }
+    .badge-heavy { background: rgba(248,81,73,0.2); color: var(--danger); border: 1px solid var(--danger); }
+    
+    .stats-bar {
+      display: flex;
+      gap: 24px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+    .stat-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 12px 20px;
+      border-radius: 8px;
+    }
+    .stat-val { font-size: 20px; font-weight: bold; color: var(--accent); }
+    .stat-lbl { font-size: 12px; color: var(--text-muted); text-transform: uppercase; }
+
+    .filters {
+      max-width: 1400px;
+      margin: 0 auto 20px auto;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text);
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--accent);
+      color: #000;
+      font-weight: 600;
+      border-color: var(--accent);
+    }
+
+    .gallery {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+    .preview-container {
+      width: 100%;
+      height: 220px;
+      background: #000;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .preview-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .card-body {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 8px;
+      word-break: break-all;
+    }
+    .card-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 12px;
+      font-size: 12px;
+      margin-bottom: 12px;
+      color: var(--text-muted);
+    }
+    .card-meta span strong { color: var(--text); }
+    .card-desc {
+      font-size: 13px;
+      line-height: 1.4;
+      margin-bottom: 12px;
+      color: #b1bac4;
+      flex-grow: 1;
+    }
+    .card-footer {
+      border-top: 1px solid var(--card-border);
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🥋 Goku Runner 3D — 3D Asset Preview Gallery</h1>
+    <p style="color: var(--text-muted); margin: 0;">Comprehensive technical inspection of all 33 downloaded 3D assets loaded in Three.js.</p>
+    <div class="stats-bar">
+      <div class="stat-box"><div class="stat-val">33</div><div class="stat-lbl">Models Audited</div></div>
+      <div class="stat-box"><div class="stat-val">100%</div><div class="stat-lbl">Load Success</div></div>
+      <div class="stat-box"><div class="stat-val">28</div><div class="stat-lbl">Suitable for Runtime</div></div>
+      <div class="stat-box"><div class="stat-val">4</div><div class="stat-lbl">Heavy / Excluded</div></div>
+      <div class="stat-box"><div class="stat-val">171 MB</div><div class="stat-lbl">Total Inventory</div></div>
+    </div>
+  </header>
+
+  <div class="filters">
+    <button class="filter-btn active" onclick="filterAssets('all')">All Models (33)</button>
+    <button class="filter-btn" onclick="filterAssets('Character')">Characters (2)</button>
+    <button class="filter-btn" onclick="filterAssets('Obstacle')">Obstacles (4)</button>
+    <button class="filter-btn" onclick="filterAssets('Rocks')">Rocks & Terrain (5)</button>
+    <button class="filter-btn" onclick="filterAssets('Mountains')">Mountains (4)</button>
+    <button class="filter-btn" onclick="filterAssets('Foliage')">Foliage & Trees (14)</button>
+    <button class="filter-btn" onclick="filterAssets('Heavy')">Heavy / Excluded (4)</button>
+  </div>
+
+  <div class="gallery" id="gallery">
+    
+      <div class="card" data-category="Character">
+        <div class="preview-container">
+          <img src="previews/baby_goku_super_saiyan_iii.png" alt="baby_goku_super_saiyan_iii.glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">baby_goku_super_saiyan_iii.glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>221 KB</strong></span>
+            <span>Tris: <strong>2,661</strong></span>
+            <span>Dims: <strong>2.07×2.96×2.22m</strong></span>
+            <span>Mats: <strong>1</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">Primary candidate for Goku character model / Super Saiyan transformation skin. Chibi anime proportions match endless runner gameplay perfectly.</div>
+          <div class="card-footer">
+            <span class="badge badge-optimal">Optimal</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Ready for Character Integration (Phase 01)</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="card" data-category="Heavy / Unsuitable">
+        <div class="preview-container">
+          <img src="previews/bush.png" alt="bush.glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">bush.glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>6.82 MB</strong></span>
+            <span>Tris: <strong>128,970</strong></span>
+            <span>Dims: <strong>152.54×112.7×152.23m</strong></span>
+            <span>Mats: <strong>2</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">Excessive polygon count (>120k - 500k tris) or file size (>20MB - 40MB). Excluded from mobile runner.</div>
+          <div class="card-footer">
+            <span class="badge badge-heavy">Heavy (Needs Optimization)</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Rejected / Superseded by Low-Poly Alternatives</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="card" data-category="Environment / Foliage (Trees)">
+        <div class="preview-container">
+          <img src="previews/dead_trees.png" alt="dead_trees.glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">dead_trees.glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>1.71 MB</strong></span>
+            <span>Tris: <strong>23,489</strong></span>
+            <span>Dims: <strong>2467.08×759.88×788.4m</strong></span>
+            <span>Mats: <strong>4</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">Arid / wasteland biome trees.</div>
+          <div class="card-footer">
+            <span class="badge badge-optimal">Optimal</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Ready for Environment Integration</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="card" data-category="Environment / Rocks">
+        <div class="preview-container">
+          <img src="previews/desert_rocks.png" alt="desert_rocks.glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">desert_rocks.glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>922 KB</strong></span>
+            <span>Tris: <strong>992</strong></span>
+            <span>Dims: <strong>1.25×1.14×2m</strong></span>
+            <span>Mats: <strong>1</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">Trackside ground rock scatter and shoulder borders.</div>
+          <div class="card-footer">
+            <span class="badge badge-optimal">Optimal</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Ready for Environment Integration</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="card" data-category="Obstacle / Environment">
+        <div class="preview-container">
+          <img src="previews/fallen_tree.png" alt="fallen_tree.glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">fallen_tree.glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>16.40 MB</strong></span>
+            <span>Tris: <strong>90,515</strong></span>
+            <span>Dims: <strong>6.29×4.2×4.39m</strong></span>
+            <span>Mats: <strong>4</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">Large fallen tree trunk obstacle. High poly (90k tris) - requires decimation to <5k tris before deployment.</div>
+          <div class="card-footer">
+            <span class="badge badge-heavy">Heavy (Needs Optimization)</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Needs Decimation</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="card" data-category="Environment / Foliage">
+        <div class="preview-container">
+          <img src="previews/fern.png" alt="fern.glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">fern.glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>1.25 MB</strong></span>
+            <span>Tris: <strong>560</strong></span>
+            <span>Dims: <strong>2.17×0.93×2.26m</strong></span>
+            <span>Mats: <strong>1</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">Accent vegetation and flowers along the track boundary.</div>
+          <div class="card-footer">
+            <span class="badge badge-optimal">Optimal</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Ready for Environment Integration</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="card" data-category="Environment / Rocks">
+        <div class="preview-container">
+          <img src="previews/flat_rocks.png" alt="flat_rocks.glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">flat_rocks.glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>3.71 MB</strong></span>
+            <span>Tris: <strong>1,442</strong></span>
+            <span>Dims: <strong>17.91×1.88×10.83m</strong></span>
+            <span>Mats: <strong>1</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">Trackside ground rock scatter and shoulder borders.</div>
+          <div class="card-footer">
+            <span class="badge badge-optimal">Optimal</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Ready for Environment Integration</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="card" data-category="Environment / Foliage">
+        <div class="preview-container">
+          <img src="previews/flowering_plant.png" alt="flowering_plant.glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">flowering_plant.glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>1.21 MB</strong></span>
+            <span>Tris: <strong>13,782</strong></span>
+            <span>Dims: <strong>0.9×1.08×0.68m</strong></span>
+            <span>Mats: <strong>1</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">Accent vegetation and flowers along the track boundary.</div>
+          <div class="card-footer">
+            <span class="badge badge-optimal">Optimal</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Ready for Environment Integration</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="card" data-category="Environment / Ground Foliage">
+        <div class="preview-container">
+          <img src="previews/grass.png" alt="grass.glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">grass.glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>1.61 MB</strong></span>
+            <span>Tris: <strong>117</strong></span>
+            <span>Dims: <strong>1.1×1.04×0.59m</strong></span>
+            <span>Mats: <strong>1</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">Instanced ground grass tufts along road edges.</div>
+          <div class="card-footer">
+            <span class="badge badge-optimal">Optimal</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Ready for Environment Integration</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="card" data-category="Environment / Ground Foliage">
+        <div class="preview-container">
+          <img src="previews/grass_patch.png" alt="grass_patch.glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">grass_patch.glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>1002 KB</strong></span>
+            <span>Tris: <strong>184</strong></span>
+            <span>Dims: <strong>5.78×3.43×4.54m</strong></span>
+            <span>Mats: <strong>3</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">Instanced ground grass tufts along road edges.</div>
+          <div class="card-footer">
+            <span class="badge badge-optimal">Optimal</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Ready for Environment Integration</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="card" data-category="Environment / Ground Foliage">
+        <div class="preview-container">
+          <img src="previews/grass_patches.png" alt="grass_patches.glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">grass_patches.glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>28 KB</strong></span>
+            <span>Tris: <strong>441</strong></span>
+            <span>Dims: <strong>1.62×0.51×0.73m</strong></span>
+            <span>Mats: <strong>1</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">Instanced ground grass tufts along road edges.</div>
+          <div class="card-footer">
+            <span class="badge badge-optimal">Optimal</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Ready for Environment Integration</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="card" data-category="Obstacle / Environment">
+        <div class="preview-container">
+          <img src="previews/large_stone.png" alt="large_stone.glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">large_stone.glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>2.40 MB</strong></span>
+            <span>Tris: <strong>41,701</strong></span>
+            <span>Dims: <strong>1.83×1.4×2.1m</strong></span>
+            <span>Mats: <strong>5</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">Large solid boulder obstacle blocking a single lane.</div>
+          <div class="card-footer">
+            <span class="badge badge-moderate">Moderate</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Ready for Integration</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="card" data-category="Environment / Background Mountains">
+        <div class="preview-container">
+          <img src="previews/low_poly_mountain_1.png" alt="low_poly_mountain (1).glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">low_poly_mountain (1).glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>233 KB</strong></span>
+            <span>Tris: <strong>1,965</strong></span>
+            <span>Dims: <strong>139.09×98.91×180.94m</strong></span>
+            <span>Mats: <strong>1</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">Distant background skyline parallax mountains. Ultra-lightweight and visually striking.</div>
+          <div class="card-footer">
+            <span class="badge badge-optimal">Optimal</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Ready for Environment Integration</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="card" data-category="Environment / Background Mountains">
+        <div class="preview-container">
+          <img src="previews/low_poly_mountain_2.png" alt="low_poly_mountain (2).glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">low_poly_mountain (2).glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>116 KB</strong></span>
+            <span>Tris: <strong>1,570</strong></span>
+            <span>Dims: <strong>203.2×253.23×203.2m</strong></span>
+            <span>Mats: <strong>2</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">Distant background skyline parallax mountains. Ultra-lightweight and visually striking.</div>
+          <div class="card-footer">
+            <span class="badge badge-optimal">Optimal</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Ready for Environment Integration</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="card" data-category="Environment / Background Mountains">
+        <div class="preview-container">
+          <img src="previews/low_poly_mountain.png" alt="low_poly_mountain.glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">low_poly_mountain.glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>145 KB</strong></span>
+            <span>Tris: <strong>1,103</strong></span>
+            <span>Dims: <strong>115.99×65.54×115.9m</strong></span>
+            <span>Mats: <strong>1</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">Distant background skyline parallax mountains. Ultra-lightweight and visually striking.</div>
+          <div class="card-footer">
+            <span class="badge badge-optimal">Optimal</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Ready for Environment Integration</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="card" data-category="Environment / Background Mountains">
+        <div class="preview-container">
+          <img src="previews/low_poly_mountain_free.png" alt="low_poly_mountain_free.glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">low_poly_mountain_free.glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>545 KB</strong></span>
+            <span>Tris: <strong>5,137</strong></span>
+            <span>Dims: <strong>5.73×2.29×6.03m</strong></span>
+            <span>Mats: <strong>2</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">Distant background skyline parallax mountains. Ultra-lightweight and visually striking.</div>
+          <div class="card-footer">
+            <span class="badge badge-optimal">Optimal</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Ready for Environment Integration</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="card" data-category="Obstacle / Environment">
+        <div class="preview-container">
+          <img src="previews/mossy_old_tree_log.png" alt="mossy_old_tree_log.glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">mossy_old_tree_log.glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>3.41 MB</strong></span>
+            <span>Tris: <strong>20,390</strong></span>
+            <span>Dims: <strong>1.53×0.58×1.22m</strong></span>
+            <span>Mats: <strong>1</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">Lane-blocking hurdle obstacle. Goku must jump over or switch lanes.</div>
+          <div class="card-footer">
+            <span class="badge badge-optimal">Optimal</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Ready for Obstacle Integration</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="card" data-category="Environment / Foliage (Trees)">
+        <div class="preview-container">
+          <img src="previews/oak_tree.png" alt="oak_tree.glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">oak_tree.glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>6.99 MB</strong></span>
+            <span>Tris: <strong>8,364</strong></span>
+            <span>Dims: <strong>10.53×8.83×8.2m</strong></span>
+            <span>Mats: <strong>2</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">Deciduous roadside canopy tree.</div>
+          <div class="card-footer">
+            <span class="badge badge-optimal">Optimal</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Ready for Environment Integration</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="card" data-category="Environment / Foliage (Trees)">
+        <div class="preview-container">
+          <img src="previews/pine_tree_1.png" alt="pine_tree (1).glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">pine_tree (1).glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>1.55 MB</strong></span>
+            <span>Tris: <strong>2,173</strong></span>
+            <span>Dims: <strong>217.06×307.78×217.12m</strong></span>
+            <span>Mats: <strong>2</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">Conifer pine tree for forest and mountain biomes. Low poly (2.1k tris). Preferred over 437k tris version.</div>
+          <div class="card-footer">
+            <span class="badge badge-optimal">Optimal</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Ready for Environment Integration (Preferred Pine)</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="card" data-category="Heavy / Unsuitable">
+        <div class="preview-container">
+          <img src="previews/pine_tree.png" alt="pine_tree.glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">pine_tree.glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>25.93 MB</strong></span>
+            <span>Tris: <strong>437,500</strong></span>
+            <span>Dims: <strong>23.07×47.69×25.03m</strong></span>
+            <span>Mats: <strong>2</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">Excessive polygon count (>120k - 500k tris) or file size (>20MB - 40MB). Excluded from mobile runner.</div>
+          <div class="card-footer">
+            <span class="badge badge-heavy">Heavy</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Rejected / Superseded by Low-Poly Alternatives</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="card" data-category="Environment / Ground Foliage">
+        <div class="preview-container">
+          <img src="previews/realistics_grass_07.png" alt="realistics_grass_07.glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">realistics_grass_07.glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>255 KB</strong></span>
+            <span>Tris: <strong>728</strong></span>
+            <span>Dims: <strong>45.48×34.78×45.72m</strong></span>
+            <span>Mats: <strong>1</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">Instanced ground grass tufts along road edges.</div>
+          <div class="card-footer">
+            <span class="badge badge-optimal">Optimal</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Ready for Environment Integration</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="card" data-category="Heavy / Unsuitable">
+        <div class="preview-container">
+          <img src="previews/realistic_trees_collection.png" alt="realistic_trees_collection.glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">realistic_trees_collection.glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>40.37 MB</strong></span>
+            <span>Tris: <strong>127,462</strong></span>
+            <span>Dims: <strong>472.68×110.36×112.44m</strong></span>
+            <span>Mats: <strong>14</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">Excessive polygon count (>120k - 500k tris) or file size (>20MB - 40MB). Excluded from mobile runner.</div>
+          <div class="card-footer">
+            <span class="badge badge-heavy">Heavy</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Rejected / Superseded by Low-Poly Alternatives</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="card" data-category="Environment / Prop Cluster">
+        <div class="preview-container">
+          <img src="previews/rocks_and_trees.png" alt="rocks_and_trees.glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">rocks_and_trees.glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>495 KB</strong></span>
+            <span>Tris: <strong>4,710</strong></span>
+            <span>Dims: <strong>1.64×0.49×0.95m</strong></span>
+            <span>Mats: <strong>5</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">Pre-assembled prop vignette (rocks + miniature trees) for trackside scenery.</div>
+          <div class="card-footer">
+            <span class="badge badge-optimal">Optimal</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Ready for Environment Integration</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="card" data-category="Environment / Rocks">
+        <div class="preview-container">
+          <img src="previews/smallrocks1.png" alt="smallrocks1.glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">smallrocks1.glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>3.02 MB</strong></span>
+            <span>Tris: <strong>2,950</strong></span>
+            <span>Dims: <strong>4.05×1.48×3.78m</strong></span>
+            <span>Mats: <strong>1</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">Trackside ground rock scatter and shoulder borders.</div>
+          <div class="card-footer">
+            <span class="badge badge-optimal">Optimal</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Ready for Environment Integration</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="card" data-category="Environment / Foliage">
+        <div class="preview-container">
+          <img src="previews/small_folliage_plant.png" alt="small_folliage_plant.glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">small_folliage_plant.glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>1.19 MB</strong></span>
+            <span>Tris: <strong>2,010</strong></span>
+            <span>Dims: <strong>9.16×3.76×3.94m</strong></span>
+            <span>Mats: <strong>1</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">Accent vegetation and flowers along the track boundary.</div>
+          <div class="card-footer">
+            <span class="badge badge-optimal">Optimal</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Ready for Environment Integration</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="card" data-category="Environment / Rocks">
+        <div class="preview-container">
+          <img src="previews/small_rocks.png" alt="small_rocks.glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">small_rocks.glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>3.93 MB</strong></span>
+            <span>Tris: <strong>376</strong></span>
+            <span>Dims: <strong>2.24×0.57×1.93m</strong></span>
+            <span>Mats: <strong>1</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">Trackside ground rock scatter and shoulder borders.</div>
+          <div class="card-footer">
+            <span class="badge badge-optimal">Optimal</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Ready for Environment Integration</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="card" data-category="Environment / Foliage (Trees)">
+        <div class="preview-container">
+          <img src="previews/small_trees.png" alt="small_trees.glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">small_trees.glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>120 KB</strong></span>
+            <span>Tris: <strong>200</strong></span>
+            <span>Dims: <strong>4.91×1.17×4.82m</strong></span>
+            <span>Mats: <strong>1</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">Ultra-low-poly roadside trees (200 tris). Perfect for high-density instancing.</div>
+          <div class="card-footer">
+            <span class="badge badge-optimal">Optimal</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Ready for Environment Integration</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="card" data-category="Collectible / Special Prop">
+        <div class="preview-container">
+          <img src="previews/stalagmitecrystalore_cluster.png" alt="stalagmitecrystalore_cluster_-_meshy.glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">stalagmitecrystalore_cluster_-_meshy.glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>2.52 MB</strong></span>
+            <span>Tris: <strong>10,000</strong></span>
+            <span>Dims: <strong>2×1.82×1.56m</strong></span>
+            <span>Mats: <strong>1</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">Ki Crystal / Powerup node or glowing hazard crystal. Adds rich visual energy to the track.</div>
+          <div class="card-footer">
+            <span class="badge badge-optimal">Optimal</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Ready for Integration</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="card" data-category="Environment / Foliage">
+        <div class="preview-container">
+          <img src="previews/stylized_bush.png" alt="stylized_bush.glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">stylized_bush.glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>572 KB</strong></span>
+            <span>Tris: <strong>988</strong></span>
+            <span>Dims: <strong>1.51×0.96×1.58m</strong></span>
+            <span>Mats: <strong>1</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">Roadside bushes and track hedges. Matches anime cell-shaded look cleanly.</div>
+          <div class="card-footer">
+            <span class="badge badge-optimal">Optimal</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Ready for Environment Integration (Preferred Bush)</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="card" data-category="Obstacle / Environment">
+        <div class="preview-container">
+          <img src="previews/tree_broken_mossy_branch.png" alt="tree_broken_mossy_branch_pbr_photogrammetry_free.glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">tree_broken_mossy_branch_pbr_photogrammetry_free.glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>5.55 MB</strong></span>
+            <span>Tris: <strong>3,941</strong></span>
+            <span>Dims: <strong>0.62×0.13×0.12m</strong></span>
+            <span>Mats: <strong>1</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">Trackside log / branch obstacle or prop.</div>
+          <div class="card-footer">
+            <span class="badge badge-optimal">Optimal</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Ready for Integration</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="card" data-category="Obstacle / Pathway">
+        <div class="preview-container">
+          <img src="previews/wooden_bridge.png" alt="wooden_bridge.glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">wooden_bridge.glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>2.85 MB</strong></span>
+            <span>Tris: <strong>6,344</strong></span>
+            <span>Dims: <strong>420.02×83.35×152.74m</strong></span>
+            <span>Mats: <strong>1</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">Elevated ramp obstacle, archway, or bridge section spanning across lanes.</div>
+          <div class="card-footer">
+            <span class="badge badge-optimal">Optimal</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Ready for Obstacle Integration</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="card" data-category="Character">
+        <div class="preview-container">
+          <img src="previews/gogeta_character.png" alt="extracted_gogeta/source/a931b105-49c4-43f6-9362-51f3478d2624.glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">extracted_gogeta/source/a931b105-49c4-43f6-9362-51f3478d2624.glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>1.81 MB</strong></span>
+            <span>Tris: <strong>47,758</strong></span>
+            <span>Dims: <strong>0.4×1×0.78m</strong></span>
+            <span>Mats: <strong>1</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">High-detail hero character model (Gogeta). Ideal as unlockable character skin or fusion transformation mode.</div>
+          <div class="card-footer">
+            <span class="badge badge-moderate">Moderate</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Ready for Character Integration (Phase 01)</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="card" data-category="Heavy / Unsuitable">
+        <div class="preview-container">
+          <img src="previews/stylized_mountain_extracted.png" alt="extracted_stylized_mountain/source/montain.glb" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-title">extracted_stylized_mountain/source/montain.glb</div>
+          <div class="card-meta">
+            <span>Size: <strong>23.59 MB</strong></span>
+            <span>Tris: <strong>500,000</strong></span>
+            <span>Dims: <strong>0.69×0.73×0.65m</strong></span>
+            <span>Mats: <strong>1</strong></span>
+            <span>Anims: <strong>0</strong></span>
+            <span>Bones: <strong>0</strong></span>
+          </div>
+          <div class="card-desc">Excessive polygon count (>120k - 500k tris) or file size (>20MB - 40MB). Excluded from mobile runner.</div>
+          <div class="card-footer">
+            <span class="badge badge-heavy">Heavy</span>
+            <span style="font-size: 11px; color: var(--accent-blue);">Rejected / Superseded by Low-Poly Alternatives</span>
+          </div>
+        </div>
+      </div>
+      
+  </div>
+
+  <script>
+    function filterAssets(cat) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        const itemCat = card.getAttribute('data-category');
+        if (cat === 'all') {
+          card.style.display = 'flex';
+        } else if (cat === 'Heavy') {
+          card.style.display = itemCat.includes('Heavy') ? 'flex' : 'none';
+        } else {
+          card.style.display = itemCat.includes(cat) ? 'flex' : 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
