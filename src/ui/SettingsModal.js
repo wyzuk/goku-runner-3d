@@ -20,7 +20,8 @@ export class SettingsModal {
       graphicsQuality: 'HIGH',
       cameraShake: true,
       touchControls: true,
-      touchOpacity: 80
+      touchOpacity: 80,
+      characterSkin: 'DEFAULT'
     };
     try {
       const data = localStorage.getItem('goku_runner_settings_v1');
@@ -63,7 +64,14 @@ export class SettingsModal {
           </div>
 
           <div class="settings-group">
-            <h3>Display & Performance</h3>
+            <h3>Character & Visuals</h3>
+            <div class="setting-row">
+              <label>Character Model / Skin</label>
+              <select id="character-skin-select" class="anime-select">
+                <option value="DEFAULT" ${this.settings.characterSkin === 'DEFAULT' ? 'selected' : ''}>Adult Goku (Animated / Physics)</option>
+                <option value="CHIBI_SSJ3" ${this.settings.characterSkin === 'CHIBI_SSJ3' ? 'selected' : ''}>Chibi SSJ3 Goku (3D Model / Hover)</option>
+              </select>
+            </div>
             <div class="setting-row">
               <label>Graphics Quality</label>
               <select id="graphics-select" class="anime-select">
@@ -127,6 +135,14 @@ export class SettingsModal {
       this.audio.setSfxVolume(this.settings.sfxVolume / 100);
       this.saveSettings();
     });
+
+    const skinSelect = this.element.querySelector('#character-skin-select');
+    if (skinSelect) {
+      skinSelect.addEventListener('change', (e) => {
+        this.settings.characterSkin = e.target.value;
+        this.saveSettings();
+      });
+    }
 
     const gfxSelect = this.element.querySelector('#graphics-select');
     gfxSelect.addEventListener('change', (e) => {

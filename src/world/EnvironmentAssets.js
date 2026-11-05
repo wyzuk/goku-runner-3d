@@ -1,6 +1,12 @@
 import * as THREE from 'three';
 import { getMaterialManager } from '../materials/MaterialManager.js';
+import { modelLoader } from '../utils/ModelAssetLoader.js';
 
+/**
+ * EnvironmentAssets
+ * Spawns rich 3D models for the environment, vegetation, rocks, and trees.
+ * Uses cached GLB instances from ModelAssetLoader, with clean procedural fallbacks.
+ */
 export class EnvironmentAssets {
   constructor() {
     this.matMgr = getMaterialManager();
@@ -17,70 +23,227 @@ export class EnvironmentAssets {
     };
   }
 
-  createOakTree() {
-    const tree = new THREE.Group();
-    // Trunk
-    const trunkGeo = new THREE.CylinderGeometry(0.35, 0.5, 2.6, 8);
-    const trunk = new THREE.Mesh(trunkGeo, this.materials.trunk);
-    trunk.position.y = 1.3;
-    trunk.castShadow = true;
-    trunk.receiveShadow = true;
-    tree.add(trunk);
+  // ==========================================
+  // 1. TREES & FOREST
+  // ==========================================
 
-    // Fluffy anime foliage clusters
-    const canopy = new THREE.Group();
-    canopy.position.y = 2.9;
-
-    const mainFoliage = new THREE.Mesh(new THREE.DodecahedronGeometry(1.5, 1), this.materials.oakLeaves);
-    mainFoliage.castShadow = true;
-    mainFoliage.receiveShadow = true;
-    canopy.add(mainFoliage);
-
-    const puff1 = new THREE.Mesh(new THREE.DodecahedronGeometry(0.95, 1), this.materials.oakLeaves);
-    puff1.position.set(-0.9, -0.2, 0.4);
-    puff1.castShadow = true;
-    canopy.add(puff1);
-
-    const puff2 = new THREE.Mesh(new THREE.DodecahedronGeometry(0.9, 1), this.materials.oakLeaves);
-    puff2.position.set(0.9, -0.25, -0.3);
-    puff2.castShadow = true;
-    canopy.add(puff2);
-
-    tree.add(canopy);
-    return tree;
+  createOakTree(scale = 1.0) {
+    if (modelLoader.has('tree_oak')) {
+      const tree = modelLoader.createInstance('tree_oak');
+      const s = 0.95 * scale;
+      tree.scale.set(s, s, s);
+      tree.rotation.y = Math.random() * Math.PI * 2;
+      return tree;
+    }
+    return this._fallbackOakTree();
   }
 
-  createPineTree() {
-    const tree = new THREE.Group();
-    const trunk = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.26, 0.38, 2.2, 8),
-      this.materials.trunk
-    );
-    trunk.position.y = 1.1;
-    trunk.castShadow = true;
-    trunk.receiveShadow = true;
-    tree.add(trunk);
-
-    // 3 tiered cones for stylized pine
-    const tiers = [
-      { y: 2.3, r: 1.5, h: 1.6 },
-      { y: 3.3, r: 1.2, h: 1.4 },
-      { y: 4.2, r: 0.8, h: 1.2 }
-    ];
-
-    tiers.forEach(t => {
-      const cone = new THREE.Mesh(
-        new THREE.ConeGeometry(t.r, t.h, 7),
-        this.materials.pineLeaves
-      );
-      cone.position.y = t.y;
-      cone.castShadow = true;
-      cone.receiveShadow = true;
-      tree.add(cone);
-    });
-
-    return tree;
+  createPineTree(scale = 1.0) {
+    if (modelLoader.has('tree_pine')) {
+      const tree = modelLoader.createInstance('tree_pine');
+      // Native unit scale is ~300cm; scale to ~8m - 10m height
+      const s = 0.03 * scale;
+      tree.scale.set(s, s, s);
+      tree.rotation.y = Math.random() * Math.PI * 2;
+      return tree;
+    }
+    return this._fallbackPineTree();
   }
+
+  createSmallTreeCluster(scale = 1.0) {
+    if (modelLoader.has('tree_small')) {
+      const cluster = modelLoader.createInstance('tree_small');
+      const s = 1.6 * scale;
+      cluster.scale.set(s, s, s);
+      cluster.rotation.y = Math.random() * Math.PI * 2;
+      return cluster;
+    }
+    return this._fallbackPineTree();
+  }
+
+  createDeadTreeCluster(scale = 1.0) {
+    if (modelLoader.has('tree_dead')) {
+      const dead = modelLoader.createInstance('tree_dead');
+      const s = 0.0045 * scale;
+      dead.scale.set(s, s, s);
+      dead.rotation.y = Math.random() * Math.PI * 2;
+      return dead;
+    }
+    return this._fallbackOakTree();
+  }
+
+  // ==========================================
+  // 2. ROCKS & BOULDERS
+  // ==========================================
+
+  createLargeBoulder(scale = 1.0) {
+    if (modelLoader.has('rock_large')) {
+      const rock = modelLoader.createInstance('rock_large');
+      const s = 1.25 * scale;
+      rock.scale.set(s, s, s);
+      rock.rotation.y = Math.random() * Math.PI * 2;
+      return rock;
+    }
+    return this.createSceneryRock(false);
+  }
+
+  createDesertRock(scale = 1.0) {
+    if (modelLoader.has('rock_desert')) {
+      const rock = modelLoader.createInstance('rock_desert');
+      const s = 1.15 * scale;
+      rock.scale.set(s, s, s);
+      rock.rotation.y = Math.random() * Math.PI * 2;
+      return rock;
+    }
+    return this.createSceneryRock(true);
+  }
+
+  createFlatRockFormation(scale = 1.0) {
+    if (modelLoader.has('rock_flat')) {
+      const rock = modelLoader.createInstance('rock_flat');
+      const s = 0.28 * scale;
+      rock.scale.set(s, s, s);
+      rock.rotation.y = Math.random() * Math.PI * 2;
+      return rock;
+    }
+    return this.createSceneryRock(false);
+  }
+
+  createSmallRockGroup(scale = 1.0) {
+    const key = Math.random() > 0.5 ? 'rock_small' : 'rock_cluster';
+    if (modelLoader.has(key)) {
+      const rock = modelLoader.createInstance(key);
+      const s = (key === 'rock_small' ? 0.75 : 0.55) * scale;
+      rock.scale.set(s, s, s);
+      rock.rotation.y = Math.random() * Math.PI * 2;
+      return rock;
+    }
+    return this.createSceneryRock(false);
+  }
+
+  createRockTreeVignette(scale = 1.0) {
+    if (modelLoader.has('rock_tree_vignette')) {
+      const vig = modelLoader.createInstance('rock_tree_vignette');
+      const s = 2.4 * scale;
+      vig.scale.set(s, s, s);
+      vig.rotation.y = Math.random() * Math.PI * 2;
+      return vig;
+    }
+    return this.createLargeBoulder();
+  }
+
+  createCrystalCluster(scale = 1.0) {
+    if (modelLoader.has('crystal_cluster')) {
+      const crystal = modelLoader.createInstance('crystal_cluster');
+      const s = 1.2 * scale;
+      crystal.scale.set(s, s, s);
+      crystal.rotation.y = Math.random() * Math.PI * 2;
+      return crystal;
+    }
+    return this.createLargeBoulder();
+  }
+
+  // ==========================================
+  // 3. FOLIAGE & UNDERGROWTH
+  // ==========================================
+
+  createStylizedBush(scale = 1.0) {
+    if (modelLoader.has('bush_stylized')) {
+      const bush = modelLoader.createInstance('bush_stylized');
+      const s = 1.2 * scale;
+      bush.scale.set(s, s, s);
+      bush.rotation.y = Math.random() * Math.PI * 2;
+      return bush;
+    }
+    return this._fallbackBush();
+  }
+
+  createGrassTuft(scale = 1.0) {
+    const key = Math.random() > 0.5 ? 'grass_tufts' : 'grass_patch';
+    if (modelLoader.has(key)) {
+      const grass = modelLoader.createInstance(key);
+      const s = (key === 'grass_tufts' ? 1.3 : 0.55) * scale;
+      grass.scale.set(s, s, s);
+      grass.rotation.y = Math.random() * Math.PI * 2;
+      return grass;
+    }
+    return null;
+  }
+
+  createFern(scale = 1.0) {
+    if (modelLoader.has('fern')) {
+      const fern = modelLoader.createInstance('fern');
+      const s = 0.85 * scale;
+      fern.scale.set(s, s, s);
+      fern.rotation.y = Math.random() * Math.PI * 2;
+      return fern;
+    }
+    return null;
+  }
+
+  createFlowerPatch(scale = 1.0) {
+    if (modelLoader.has('flower_plant')) {
+      const flower = modelLoader.createInstance('flower_plant');
+      const s = 1.1 * scale;
+      flower.scale.set(s, s, s);
+      flower.rotation.y = Math.random() * Math.PI * 2;
+      return flower;
+    }
+    return null;
+  }
+
+  // ==========================================
+  // 4. FOREST FLOOR PROPS
+  // ==========================================
+
+  createMossyLogProp(scale = 1.0) {
+    if (modelLoader.has('mossy_log')) {
+      const log = modelLoader.createInstance('mossy_log');
+      const s = 1.8 * scale;
+      log.scale.set(s, s, s);
+      log.rotation.y = Math.random() * Math.PI * 2;
+      return log;
+    }
+    return null;
+  }
+
+  createBrokenBranchProp(scale = 1.0) {
+    if (modelLoader.has('broken_branch')) {
+      const branch = modelLoader.createInstance('broken_branch');
+      const s = 3.4 * scale;
+      branch.scale.set(s, s, s);
+      branch.rotation.y = Math.random() * Math.PI * 2;
+      return branch;
+    }
+    return null;
+  }
+
+  // ==========================================
+  // 5. MOUNTAIN GEOMETRIES
+  // ==========================================
+
+  createMountain(type = 0, scale = 1.0) {
+    const keys = ['mtn_main', 'mtn_ridge', 'mtn_peak', 'mtn_crag'];
+    const chosenKey = keys[type % keys.length];
+
+    if (modelLoader.has(chosenKey)) {
+      const mtn = modelLoader.createInstance(chosenKey);
+      let baseScale = 0.55;
+      if (chosenKey === 'mtn_crag') baseScale = 11.0;
+      else if (chosenKey === 'mtn_peak') baseScale = 0.38;
+      else if (chosenKey === 'mtn_ridge') baseScale = 0.48;
+
+      const s = baseScale * scale;
+      mtn.scale.set(s, s, s);
+      mtn.rotation.y = Math.random() * Math.PI * 2;
+      return mtn;
+    }
+    return null;
+  }
+
+  // ==========================================
+  // FALLBACKS & SPECIAL ASSETS
+  // ==========================================
 
   createCactus() {
     const cactus = new THREE.Group();
@@ -148,29 +311,54 @@ export class EnvironmentAssets {
     basePuff.scale.set(1.6, 0.7, 1.0);
     cloud.add(basePuff);
 
-    const puff1 = new THREE.Mesh(new THREE.SphereGeometry(1.8, 8, 8), mat);
-    puff1.position.set(-1.8, 0.4, 0);
-    const puff2 = new THREE.Mesh(new THREE.SphereGeometry(1.9, 8, 8), mat);
-    puff2.position.set(1.5, 0.3, 0.2);
-    const topPuff = new THREE.Mesh(new THREE.SphereGeometry(1.6, 8, 8), mat);
-    topPuff.position.set(0, 1.0, -0.1);
+    const p1 = new THREE.Mesh(new THREE.SphereGeometry(1.8, 8, 8), mat);
+    p1.position.set(-1.8, 0.2, 0.2);
+    cloud.add(p1);
 
-    cloud.add(puff1, puff2, topPuff);
+    const p2 = new THREE.Mesh(new THREE.SphereGeometry(2.0, 8, 8), mat);
+    p2.position.set(1.6, 0.3, -0.2);
+    cloud.add(p2);
+
+    const p3 = new THREE.Mesh(new THREE.SphereGeometry(1.4, 7, 7), mat);
+    p3.position.set(0.2, 1.0, 0);
+    cloud.add(p3);
+
     return cloud;
   }
 
-  createFloatingIsland() {
-    const island = new THREE.Group();
-    const topGeo = new THREE.CylinderGeometry(3.5, 3.2, 0.6, 8);
-    const topMesh = new THREE.Mesh(topGeo, this.materials.oakLeaves);
-    island.add(topMesh);
+  _fallbackOakTree() {
+    const tree = new THREE.Group();
+    const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.5, 2.6, 8), this.materials.trunk);
+    trunk.position.y = 1.3;
+    trunk.castShadow = true;
+    tree.add(trunk);
 
-    const bottomGeo = new THREE.ConeGeometry(3.2, 4.0, 7);
-    bottomGeo.rotateX(Math.PI);
-    const bottomMesh = new THREE.Mesh(bottomGeo, this.materials.rock);
-    bottomMesh.position.y = -2.0;
-    island.add(bottomMesh);
+    const canopy = new THREE.Mesh(new THREE.DodecahedronGeometry(1.5, 1), this.materials.oakLeaves);
+    canopy.position.y = 2.9;
+    canopy.castShadow = true;
+    tree.add(canopy);
+    return tree;
+  }
 
-    return island;
+  _fallbackPineTree() {
+    const tree = new THREE.Group();
+    const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.26, 0.38, 2.2, 8), this.materials.trunk);
+    trunk.position.y = 1.1;
+    trunk.castShadow = true;
+    tree.add(trunk);
+
+    const cone = new THREE.Mesh(new THREE.ConeGeometry(1.5, 3.2, 7), this.materials.pineLeaves);
+    cone.position.y = 3.0;
+    cone.castShadow = true;
+    tree.add(cone);
+    return tree;
+  }
+
+  _fallbackBush() {
+    const bush = new THREE.Mesh(new THREE.DodecahedronGeometry(0.85, 1), this.materials.oakLeaves);
+    bush.position.y = 0.5;
+    bush.scale.set(1.3, 0.8, 1.1);
+    bush.castShadow = true;
+    return bush;
   }
 }

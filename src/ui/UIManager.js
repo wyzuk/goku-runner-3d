@@ -59,6 +59,10 @@ export class UIManager {
   }
 
   applySettings(settings) {
+    if (settings.characterSkin) {
+      this.game.setPlayerSkin(settings.characterSkin);
+    }
+
     if (this.touchControls) {
       if (settings.touchControls) {
         this.touchControls.setOpacity(settings.touchOpacity);

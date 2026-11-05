@@ -22,6 +22,7 @@ import { MilestoneManager } from '../progression/MilestoneManager.js';
 import { AchievementManager } from '../progression/AchievementManager.js';
 import { ChallengeManager } from '../progression/ChallengeManager.js';
 import { UIManager } from '../ui/UIManager.js';
+import { modelLoader } from '../utils/ModelAssetLoader.js';
 
 export class Game {
   constructor() {
@@ -110,6 +111,21 @@ export class Game {
     this.followCamera.init(this.player.position);
     this.ui.showMenu(this.progression.profile);
     this.loop.start();
+
+    // Asynchronously preload all 3D environment & obstacle models
+    modelLoader.preloadAll().then(() => {
+      console.log('[Game] 3D Models loaded. Rebuilding active world chunks...');
+      if (this.gameState.is(GAME_STATES.MENU)) {
+        this.world.reset();
+      }
+    });
+  }
+
+  setPlayerSkin(skinName) {
+    if (this.player && this.player.gokuModel) {
+      this.player.gokuModel.setSkin(skinName);
+      console.log(`[Game] Switched player skin to: ${skinName}`);
+    }
   }
 
   setupCallbacks() {

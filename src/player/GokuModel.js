@@ -1,34 +1,43 @@
 import * as THREE from 'three';
 import { AnimeMaterials } from '../materials/AnimeMaterials.js';
+import { modelLoader } from '../utils/ModelAssetLoader.js';
 
 /**
  * 3D Stylized Anime Goku Character Model
  * Detailed anatomy, multi-layered Saiyan hair, martial arts Gi, boots, hands, cel-shading,
  * and Super Saiyan transformation visuals.
+ * Supports optional alternate skins (e.g. Chibi SSJ3 Goku).
  */
 export class GokuModel {
   constructor() {
     this.materials = new AnimeMaterials();
     this.group = new THREE.Group();
     this.isSuperSaiyan = false;
+    this.currentSkin = 'DEFAULT'; // 'DEFAULT' or 'CHIBI_SSJ3'
     this.hairMeshes = [];
     this.eyeMeshes = [];
     this.sparkMeshes = [];
 
     this.joints = {};
     this.buildCharacter();
+    this.initChibiModel();
   }
 
   buildCharacter() {
     // Master offset so character feet stand naturally on ground (y = 0)
-    const masterOffset = new THREE.Group();
-    masterOffset.position.y = 0;
-    this.group.add(masterOffset);
+    this.masterOffset = new THREE.Group();
+    this.masterOffset.position.y = 0;
+    this.group.add(this.masterOffset);
+
+    // Alternate chibi skin container
+    this.chibiModelGroup = new THREE.Group();
+    this.chibiModelGroup.visible = false;
+    this.group.add(this.chibiModelGroup);
 
     // 1. ROOT / HIPS (Pelvis)
     this.joints.root = new THREE.Group();
     this.joints.root.position.y = 0.95;
-    masterOffset.add(this.joints.root);
+    this.masterOffset.add(this.joints.root);
 
     // Pelvis Mesh
     const pelvisGeo = new THREE.CylinderGeometry(0.24, 0.22, 0.2, 8);
@@ -404,6 +413,30 @@ export class GokuModel {
     }
   }
 
+  initChibiModel() {
+    modelLoader.onReady(() => {
+      if (modelLoader.has('chibi_goku_ssj3') && this.chibiModelGroup.children.length === 0) {
+        const chibi = modelLoader.createInstance('chibi_goku_ssj3');
+        // Native model is ~2.96m tall; scale to ~1.65m height for runner
+        const s = 0.55;
+        chibi.scale.set(s, s, s);
+        chibi.position.set(0, 0, 0);
+        this.chibiModelGroup.add(chibi);
+      }
+    });
+  }
+
+  setSkin(skinName) {
+    this.currentSkin = skinName;
+    if (skinName === 'CHIBI_SSJ3') {
+      this.masterOffset.visible = false;
+      this.chibiModelGroup.visible = true;
+    } else {
+      this.masterOffset.visible = true;
+      this.chibiModelGroup.visible = false;
+    }
+  }
+
   setSuperSaiyan(isSSJ) {
     this.isSuperSaiyan = isSSJ;
     const hairMat = isSSJ ? this.materials.hairSSJ : this.materials.hairNormal;
@@ -433,6 +466,12 @@ export class GokuModel {
     // Flowing sash / belt flutter with speed
     if (this.joints.beltTails) {
       this.joints.beltTails.rotation.x = Math.sin(time * 14.0) * 0.28 - 0.2;
+    }
+
+    // Dynamic floating bob if alternate chibi skin active
+    if (this.currentSkin === 'CHIBI_SSJ3' && this.chibiModelGroup.visible) {
+      this.chibiModelGroup.position.y = Math.sin(time * 6.0) * 0.08;
+      this.chibiModelGroup.rotation.z = Math.sin(time * 3.5) * 0.04;
     }
 
     if (this.isSuperSaiyan) {
